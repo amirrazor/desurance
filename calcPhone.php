@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- style css -->
     <link rel="stylesheet" href="css/style.css">
+    <link type="text/css" rel="stylesheet" href="css/mystyle.css">
     <!-- Responsive-->
     <link rel="stylesheet" href="css/responsive.css">
 </head>
@@ -38,6 +39,7 @@
                                 <div class="center-desk">
                                     <div class="logo">
                                         <a href="index.html"><img src="images/logo.png" alt="#" /></a>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -115,7 +117,7 @@
 
                                     <div class="col-md-12">
                                         <p class="phones m-3">Enter your phone's purchase price:</p>
-                                        <input class="form_contril m-3 py-4 text-muted"
+                                        <input class="inputed m-3 py-4 text-muted"
                                             placeholder="Phone's price in Euro" type="text" name="Phone Price">
                                     </div>
                                     <div class="col-md-12">
