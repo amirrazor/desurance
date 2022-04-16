@@ -1,102 +1,36 @@
-<!DOCTYPE html>
-
-<html lang="en">
-
-<head>
-    <!-- basic -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- mobile metas -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-    <!-- site metas -->
-    <title>Decentralized Insurance</title>
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <!-- bootstrap css -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- style css -->
-    <link rel="stylesheet" href="css/style.css">
-    <link type="text/css" rel="stylesheet" href="css/mystyle.css">
-    <!-- Responsive-->
-    <link rel="stylesheet" href="css/responsive.css">
-</head>
-<!-- body -->
-
-<body class="main-layout">
 
     <!-- header -->
-    <header>
-        <!-- header inner -->
-        <div class="head_top">
-            <div class="header">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
-                            <div class="full">
-                                <div class="center-desk">
-                                    <div class="logo">
-                                        <a href="index.html"><img src="images/logo.png" alt="#" /></a>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
-                            <nav class="navigation navbar navbar-expand-md navbar-dark ">
-                                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                                    data-target="#navbarsExample04" aria-controls="navbarsExample04"
-                                    aria-expanded="false" aria-label="Toggle navigation">
-                                    <span class="navbar-toggler-icon"></span>
-                                </button>
-                                <div class="collapse navbar-collapse" id="navbarsExample04">
-                                    <ul class="navbar-nav mr-auto">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="index.php"> Home </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#">About</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="choose.php">See Offers</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end header inner -->
+    <?php include 'includes/header.php'?>
             <!-- end header -->
 
-            <!-- contact -->
+            <!-- Calculate insurance premium -->
             <div id="contact" class="contact">
                 <div class="container">
-                    <div class="row">
+                    
                         <div class="col-md-12">
-                            <div class="titlepage">
+                            <div class="titlepage2">
                                 <h2>Find the best offer for you</h2>
-                                <span>Please enter the information below </span>
+                                <div class="mb-3">Please enter the information below </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12 ">
-                            <form class="main_form ">
-                                <div class="row">
+
+                            <div class="row">
+                                <div class="main_form">
 
                                     <div class="col-md-12">
 
-                                        <div class="phones m-3">Select your phone's manufacturer:</div>
-                                        <label for="phones" class="phonelabel"></label>
+                                        <label for="phones" class="phones m-3">Select your phone's manufacturer:
+                                            <div class="text-danger star">*</div>
+                                            </label></br>
+
 
                                         <select id="phones" class="phoneselect">
-                                            <option value="Apple">manufacturer</option>
+                                            <option value="manufacturer">manufacturer</option>
                                             <option value="Apple">Apple</option>
                                             <option value="Samsung">Samsung</option>
                                             <option value="Huawei">Huawei</option>
@@ -114,85 +48,72 @@
                                             <option value="Other">Other...</option>
                                         </select>
                                     </div>
+                                    <div class="col-md-12">
+                                        <label for="phoneage" class="purchasedatelabel m-3">Date of purchase: <div
+                                                class="text-danger star">*</div> </label></br>
+
+                                        <select id="phoneage" class="inputed">
+                                            <option value="choose">Please choose</option>
+                                            <option value="older than 1 year">older than 1 year</option>
+                                            <option value="newer than 1 year">newer than 1 year</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label for="priceinput" class="phones m-3">Enter your phone's purchase price:
+                                            <div class="text-danger star userinput">*</div>
+                                            </label></br>
+                                        <input id="priceinput" class="inputed priceinput" placeholder="€" type="text"
+                                            name="Phone Price">
+                                    </div>
+
+
+
 
                                     <div class="col-md-12">
-                                        <p class="phones m-3">Enter your phone's purchase price:</p>
-                                        <input class="inputed m-3 py-4 text-muted"
-                                            placeholder="Phone's price in Euro" type="text" name="Phone Price">
+                                        <label for="payinterval" class="purchasedatelabel m-3">Would you like to pay
+                                            monthly or yearly?</label>
+                                        <div class="text-danger star">*</div></br> </label>
+
+                                        <select id="payinterval" class="inputed">
+                                            <option value="choose">Please choose</option>
+                                            <option value="Monthly">Monthly</option>
+                                            <option value="Yearly">Yearly</option>
+                                        </select>
                                     </div>
                                     <div class="col-md-12">
-                                        <label for="start" class="purchasedatelabel m-3">Date of purchase: </label>
+                                        <label for="thief" class="purchasedatelabel m-2">Would you like to add extra
+                                            thief and cyber protection? (for only €2.50)</label>
+                                        <div class="text-danger star">*</div></br> </label>
 
-                                        <input type="date" id="start" name="trip-start" value="2022-02-22"
-                                            min="2000-01-01" max="2022-12-31">
+                                        <select id="thief" class="inputed">
+                                            <option value="choose">Please choose</option>
+                                            <option value="With">With</option>
+                                            <option value="Without">Without</option>
+                                        </select>
                                     </div>
+                                    <div class="col-md-12">
+                                        <div class="premiumpricelabel text-white row h3 font-weight-bold m-2">
+                                            <div class="mr-2">Premium price: </div>
 
-                                    <div class="col-md-12 m-3">
-                                        <div class="phones">Would you like to pay monthly or yearly?</div>
-                                        <div class="choice2">
-                                            <button class="read_more btn btn-default m-3">
-                                                Monthly
-                                            </button>
-                                            <button class="read_more btn btn-default m-3">
-                                                Yearly
-                                            </button>
-                                        </div>
-                                        <div class="thiefoption text-white m-3">
-                                            <p>Would you like to add extra thief and cyber protection?</p>
-                                            <input type="checkbox" id="scales" name="scales" checked>
-                                            <label for="scales">Thief and cyber protection</label>
-
-                                        </div>
-                                        <div class="premiumpricelabel text-white m-3">
-                                            <p>Premium price: </p>
-                                            <p class="premiumprice">0 Euros </p>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <button class="send_btn calculate">Calculate Premium</button>
+                                            <div class="text-danger star">€ </div>
+                                            <div class="premiumprice text-danger">0</div>
                                         </div>
                                     </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end contact -->
-            <!--  footer -->
-            <footer>
-                <div class="footer">
-                    <div class="container">
-                        <div class="row">
+                                    <div class="notice3 text-danger h3"></div>
+                                    <div class="notice text-danger h3"></div>
+                                    <div class="notice2 text-danger h3"></div>
+                                    <div class="notice4 text-danger h3"></div>
+                                    <div class="notice5 text-danger h3"></div>
+                                    <div class="notice5 text-warning h3">Please note that the end-payment will be converted to ETH (in ethereum's Rinkeby testnet)</div>
+                                    <div class="col-sm-12">
+                                        <button class="send_btn calculate">Calculate Premium</button>
+                                    </div>
 
-                            <div class="col-md-12">
-                                <ul class="social_icon">
-                                    <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></i></a></li>
-                                    <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="copyright">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <p>Copyright 2019 All Right Reserved By <a href="https://html.design/"> Free html
-                                            Templates</a></p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </footer>
-            <!-- end footer -->
-            <!-- Javascript files-->
-            <script src="js/premium.js"></script>
-            <script src="js/jquery.min.js"></script>
-            <script src="js/bootstrap.bundle.min.js"></script>
-
-
-
-
-</body>
-
-</html>
+                <!-- end contact -->
+                <!--  footer -->
+                <?php include "includes/footer.php" ?>
