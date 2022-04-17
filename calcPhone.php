@@ -65,6 +65,8 @@
                                         <input id="priceinput" class="inputed priceinput" placeholder="€" type="text"
                                             name="Phone Price">
                                     </div>
+                                    
+
 
 
 

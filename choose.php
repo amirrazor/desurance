@@ -21,7 +21,6 @@
                               Stay tuned for more!
                            </a>
                                 </div>
-
                             </div>
                         </div>
                     </div>
