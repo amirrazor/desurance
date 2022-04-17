@@ -11,7 +11,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="titlepage2">
-                                <h2>First login using Metamask!</h2>
+                                <h2>Click the button to (sign up and) login!</h2>
                                 <h3 class="text-white">It is super easy and very secure</h3>
                             </div>
                         </div>
@@ -27,7 +27,7 @@
                      
                     <div  class="text-white h3 p-4">
                      <div id="loggedOut" class="user-login-msg">
-					Click the button to (sign up and) login!
+					
 				</div>
 				<div id="needMetamask" style="display:none;color: rgb(255, 115, 0);" class="user-login-msg">
 					To login, first install a Web3 wallet like the <a href="https://metamask.io/" style="color:#ff7300" target="_blank">MetaMask</a> browser extension or mobile app
@@ -39,17 +39,17 @@
 					Sign the message with your wallet to authenticate
 				</div>
 				<div id="loggedIn" style="display:none;" class="user-login-msg">
-					Successful authentication for address:<br><span id="ethAddress"></span>
+					Successful authentication for address: <span id="ethAddress"></span>
 					<br><br>
-					You can set a public name for this account:<br>
+					You can set a public name for this account: 
 					<input type="text" placeholder="Public name" id="updatePublicName" onfocusout="setPublicName()" style="width:190px;" class="text-dark">
 				</div>
 				<br>
 				<button onclick="userLoginOut()" id="buttonText" class="read_more btn btn-default my-5">Log in</button>
                 </div>
-                <div class="col-sm-12 text-center">
+                <div class="col-sm-12 text-center mb-5">
                                         
-                                    <a class="read_more btn btn-default mb-5" href="calcPhone.php">Continue</a>
+                                    <a class="read_more btn btn-default mb-10" href="calcPhone.php">Continue</a>
                                         
                                     </div>
             </div>

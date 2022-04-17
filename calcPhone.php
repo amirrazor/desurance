@@ -107,6 +107,7 @@
                                     <div class="notice5 text-warning h3">Please note that the end-payment will be converted to ETH (in ethereum's Rinkeby testnet)</div>
                                     <div class="col-sm-12">
                                         <button class="send_btn calculate">Calculate Premium</button>
+                                        <a class="send_btn text-center" href="personalInfo.php">Continue</a>
                                     </div>
 
                                 </div>

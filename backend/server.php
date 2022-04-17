@@ -30,7 +30,7 @@ if ($request == "login") {
 
   if ($nonce) {
     // If user exists, return message to sign
-    echo("Sign this message to validate that you are the owner of the account. Random string: " . $nonce);
+    echo("Sign this message to validate that you are the owner of the account. Nonce: " . $nonce);
   }
   else {
     // If user doesn't exist, register new user with generated nonce, then return message to sign

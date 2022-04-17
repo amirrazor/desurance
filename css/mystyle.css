@@ -51,6 +51,14 @@ html{
 }
 
 .social_icon {
-    margin-top: 250px;
+    
+    margin-bottom: 100px;
+}
+
+.choice{
+    margin-bottom: 200px;
+}
+
+.mb-10{
     margin-bottom: 100px;
 }

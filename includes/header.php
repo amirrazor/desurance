@@ -55,17 +55,9 @@
                                 <div class="collapse navbar-collapse" id="navbarsExample04">
                                     <ul class="navbar-nav mr-auto">
 
-                                    <?php
-                                    include 'db.php';
-                                    $query = "SELECT * FROM menu";
-                                    $select_menu = mysqli_query($connection,$query);
-                                    while($row = mysqli_fetch_assoc($select_menu)) {
-                                        $menu_title = $row['menu_title'];
-                                        echo "<li class='nav-item nav-link'>
-                                         {$menu_title}  </li>";
-                                    }
-                                    ?>
-                                        <!-- <li class="nav-item">
+                                   
+                                    
+                                        <li class="nav-item">
                                             <a class="nav-link" href="index.php"> Home  </a>
                                         </li>
                                         <li class="nav-item">
@@ -73,11 +65,13 @@
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="choose.php">See Offers</a>
-                                        </li> -->
+                                        </li>
+
+                                      
 
 
                                     </ul>
-                                </div>
+                               
                             </nav>
                         </div>
                     </div>
