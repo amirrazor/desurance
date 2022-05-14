@@ -1,8 +1,6 @@
 
-    <!-- header -->
-    <?php include 'includes/header.php'?>
-
             <!-- accept insurance terms -->
+            <div id="terms">
             <div id="contact" class="contact">
                 <div class="container">
                     <div class="row">
@@ -53,12 +51,13 @@
                                     </section>
                                       
                                     <div class="col-sm-12 text-center">
-                                        
-                                    <a class="read_more btn btn-default mb-5" href="connectWallet.php">Accept</a>
+                                    <button onclick="termsToChoose()" id="buttonText" class="read_more btn btn-default my-5">Back</button>
+                                    <button onclick="termsToCalc()" class="read_more btn btn-default">Accept</button>
                                         
                                     </div>
+                                    
                 </div>
             </div>
-            <!-- end contact -->
-            <!--  footer -->
             <?php include "includes/footer.php" ?>
+            </div>
+            <!-- accept insurance terms -->

@@ -1,9 +1,6 @@
 
-    <!-- header -->
-    <?php include 'includes/header.php'?>
-            <!-- end header -->
-
             <!-- Calculate insurance premium -->
+            <div id="calc">
             <div id="contact" class="contact">
                 <div class="container">
                     
@@ -22,32 +19,35 @@
                             <div class="row">
                                 <div class="main_form">
 
+                                    
+
                                     <div class="col-md-12">
+                                        <label for="thief" class="purchasedatelabel m-2">Would you like to add extra
+                                            thief and cyber protection? (for only €2.50)</label>
+                                        <div class="text-danger star">*</div></br> </label>
 
-                                        <label for="phones" class="phones m-3">Select your phone's manufacturer:
-                                            <div class="text-danger star">*</div>
-                                            </label></br>
+                                        <select id="thief" class="inputed">
+                                            <option value="choose">Please choose</option>
+                                            <option value="With">With</option>
+                                            <option value="Without">Without</option>
+                                        </select>
+                                    
+                                       
+                                    </div>
 
+                                    <div class="col-md-12">
+                                        <label for="payinterval" class="purchasedatelabel m-3">Would you like to pay
+                                            monthly or yearly?</label>
+                                        <div class="text-danger star">*</div></br> </label>
 
-                                        <select id="phones" class="phoneselect">
-                                            <option value="manufacturer">manufacturer</option>
-                                            <option value="Apple">Apple</option>
-                                            <option value="Samsung">Samsung</option>
-                                            <option value="Huawei">Huawei</option>
-                                            <option value="Xiaomi">Xiaomi</option>
-                                            <option value="Vivo">Vivo</option>
-                                            <option value="Sony">Sony</option>
-                                            <option value="OnePlus">OnePlus</option>
-                                            <option value="Honor">Honor</option>
-                                            <option value="Nokia">Nokia</option>
-                                            <option value="LG">LG</option>
-                                            <option value="Xiaomi">Xiaomi</option>
-                                            <option value="Oppo">Oppo</option>
-                                            <option value="Realme">Realme</option>
-                                            <option value="ZTE">ZTE</option>
-                                            <option value="Other">Other...</option>
+                                        <select id="payinterval" class="inputed">
+                                            <option value="choose">Please choose</option>
+                                            <option value="Monthly">Monthly</option>
+                                            <option value="Yearly">Yearly</option>
                                         </select>
                                     </div>
+
+
                                     <div class="col-md-12">
                                         <label for="phoneage" class="purchasedatelabel m-3">Date of purchase: <div
                                                 class="text-danger star">*</div> </label></br>
@@ -71,34 +71,14 @@
 
 
 
-                                    <div class="col-md-12">
-                                        <label for="payinterval" class="purchasedatelabel m-3">Would you like to pay
-                                            monthly or yearly?</label>
-                                        <div class="text-danger star">*</div></br> </label>
-
-                                        <select id="payinterval" class="inputed">
-                                            <option value="choose">Please choose</option>
-                                            <option value="Monthly">Monthly</option>
-                                            <option value="Yearly">Yearly</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <label for="thief" class="purchasedatelabel m-2">Would you like to add extra
-                                            thief and cyber protection? (for only €2.50)</label>
-                                        <div class="text-danger star">*</div></br> </label>
-
-                                        <select id="thief" class="inputed">
-                                            <option value="choose">Please choose</option>
-                                            <option value="With">With</option>
-                                            <option value="Without">Without</option>
-                                        </select>
-                                    </div>
+                                    
+                                    
                                     <div class="col-md-12">
                                         <div class="premiumpricelabel text-white row h3 font-weight-bold m-2">
                                             <div class="mr-2">Premium price: </div>
 
                                             <div class="text-danger star">€ </div>
-                                            <div class="premiumprice text-danger">0</div>
+                                            <div id ="premiumPrice" class="premiumprice text-danger">0</div>
                                         </div>
                                     </div>
                                     <div class="notice3 text-danger h3"></div>
@@ -107,16 +87,25 @@
                                     <div class="notice4 text-danger h3"></div>
                                     <div class="notice5 text-danger h3"></div>
                                     <div class="notice5 text-warning h3">Please note that the end-payment will be converted to ETH (in ethereum's Rinkeby testnet)</div>
-                                    <div class="col-sm-12">
-                                        <button class="send_btn calculate">Calculate Premium</button>
-                                        <a class="send_btn text-center" href="personalInfo.php">Continue</a>
-                                    </div>
+                                    
+                                    
+                                       
+                                   
 
                                 </div>
+                               
+                                
+                                        
                             </div>
                         </div>
                     </div>
+                    <div class="text-center">
+                    <button onclick="calcToTerms()"  class="read_more btn btn-default my-5  ">back</button>
+                                        <button class="read_more btn btn-default calculate my-5  ">Calculate Premium</button>
+                                        <button onclick="calcToInfo();setPremiumprice();setPhoneprice();setThief();setPayinterval();setPhoneage();"  class="read_more btn btn-default my-5  ">Continue</button>
+                    </div>
+                </div>
+                </div>
+                <?php include "includes/footer.php" ?>
                 </div>
                 <!-- end contact -->
-                <!--  footer -->
-                <?php include "includes/footer.php" ?>

@@ -30,7 +30,7 @@ if ($request == "login") {
 
   if ($nonce) {
     // If user exists, return message to sign
-    echo("Sign this message to validate that you are the owner of the account. Nonce: " . $nonce);
+    echo("Sign this message to validate that you are the owner of the account. Random string: " . $nonce);
   }
   else {
     // If user doesn't exist, register new user with generated nonce, then return message to sign
@@ -95,6 +95,66 @@ if ($request == "auth") {
     $publicName = $stmt->fetchColumn();
     $publicName = htmlspecialchars($publicName, ENT_QUOTES, 'UTF-8');
 
+    $stmt = $conn->prepare("SELECT fullName FROM $tablename WHERE address = ?");
+    $stmt->bindParam(1, $address);
+    $stmt->execute();
+    $fullName = $stmt->fetchColumn();
+    $fullName = htmlspecialchars($fullName, ENT_QUOTES, 'UTF-8');
+
+    $stmt = $conn->prepare("SELECT homeAddress FROM $tablename WHERE address = ?");
+    $stmt->bindParam(1, $address);
+    $stmt->execute();
+    $homeAddress = $stmt->fetchColumn();
+    $homeAddress = htmlspecialchars($homeAddress, ENT_QUOTES, 'UTF-8');
+
+    $stmt = $conn->prepare("SELECT phoneModel FROM $tablename WHERE address = ?");
+    $stmt->bindParam(1, $address);
+    $stmt->execute();
+    $phoneModel = $stmt->fetchColumn();
+    $phoneModel = htmlspecialchars($phoneModel, ENT_QUOTES, 'UTF-8');
+
+    $stmt = $conn->prepare("SELECT email FROM $tablename WHERE address = ?");
+    $stmt->bindParam(1, $address);
+    $stmt->execute();
+    $email = $stmt->fetchColumn();
+    $email = htmlspecialchars($email, ENT_QUOTES, 'UTF-8');
+
+    $stmt = $conn->prepare("SELECT phoneNumber FROM $tablename WHERE address = ?");
+    $stmt->bindParam(1, $address);
+    $stmt->execute();
+    $phoneNumber = $stmt->fetchColumn();
+    $phoneNumber = htmlspecialchars($phoneNumber, ENT_QUOTES, 'UTF-8');
+
+    $stmt = $conn->prepare("SELECT phonePrice FROM $tablename WHERE address = ?");
+    $stmt->bindParam(1, $address);
+    $stmt->execute();
+    $phoneprice = $stmt->fetchColumn();
+    $phoneprice = htmlspecialchars($phoneprice, ENT_QUOTES, 'UTF-8');
+
+    $stmt = $conn->prepare("SELECT premiumPrice FROM $tablename WHERE address = ?");
+    $stmt->bindParam(1, $address);
+    $stmt->execute();
+    $premiumPrice = $stmt->fetchColumn();
+    $premiumPrice = htmlspecialchars($premiumPrice, ENT_QUOTES, 'UTF-8');
+
+    $stmt = $conn->prepare("SELECT thief FROM $tablename WHERE address = ?");
+    $stmt->bindParam(1, $address);
+    $stmt->execute();
+    $thief = $stmt->fetchColumn();
+    $thief = htmlspecialchars($thief, ENT_QUOTES, 'UTF-8');
+
+    $stmt = $conn->prepare("SELECT payInterval FROM $tablename WHERE address = ?");
+    $stmt->bindParam(1, $address);
+    $stmt->execute();
+    $payInterval = $stmt->fetchColumn();
+    $payInterval = htmlspecialchars($payInterval, ENT_QUOTES, 'UTF-8');
+
+    $stmt = $conn->prepare("SELECT phoneAge FROM $tablename WHERE address = ?");
+    $stmt->bindParam(1, $address);
+    $stmt->execute();
+    $phoneAge = $stmt->fetchColumn();
+    $phoneAge = htmlspecialchars($phoneAge, ENT_QUOTES, 'UTF-8');
+
     // Create a new random nonce for the next login
     $nonce = uniqid();
     $sql = "UPDATE $tablename SET nonce = '".$nonce."' WHERE address = '".$address."'";
@@ -105,7 +165,7 @@ if ($request == "auth") {
     $token['address'] = $address;
     $JWT = JWT::encode($token, $GLOBALS['JWT_secret']);
 
-    echo(json_encode(["Success", $publicName, $JWT]));
+    echo(json_encode(["Success", $publicName, $JWT, $fullName, $homeAddress, $phoneModel, $email, $phoneNumber, $phoneprice, $premiumPrice, $thief, $payInterval, $phoneAge]));
   } else {
     echo "Fail";
   }
@@ -128,6 +188,208 @@ if ($request == "updatePublicName") {
 
   if ($stmt->execute() === TRUE) {
     echo "Public name for $address updated to $publicName";
+  }
+
+  $conn = null;
+  exit;
+}
+
+if ($request == "updateFullname") {
+  $fullName = $data->fullName;
+  $address = $data->address;
+
+  // Check if the user is logged in
+  try { $JWT = JWT::decode($data->JWT, $GLOBALS['JWT_secret']); }
+  catch (\Exception $e) { echo 'Authentication error'; exit; }
+
+  // Prepared statement to protect against SQL injections
+  $stmt = $conn->prepare("UPDATE $tablename SET fullName = ? WHERE address = '".$address."'");
+  $stmt->bindParam(1, $fullName);
+
+  if ($stmt->execute() === TRUE) {
+    echo "full name for $address updated to $fullName";
+  }
+
+  $conn = null;
+  exit;
+}
+
+if ($request == "updateHomeaddress") {
+  $homeAddress = $data->homeAddress;
+  $address = $data->address;
+
+  // Check if the user is logged in
+  try { $JWT = JWT::decode($data->JWT, $GLOBALS['JWT_secret']); }
+  catch (\Exception $e) { echo 'Authentication error'; exit; }
+
+  // Prepared statement to protect against SQL injections
+  $stmt = $conn->prepare("UPDATE $tablename SET homeAddress = ? WHERE address = '".$address."'");
+  $stmt->bindParam(1, $homeAddress);
+
+  if ($stmt->execute() === TRUE) {
+    echo "home address for $address updated to $homeAddress";
+  }
+
+  $conn = null;
+  exit;
+}
+
+if ($request == "updatePhonemodel") {
+  $phoneModel = $data->phoneModel;
+  $address = $data->address;
+
+  // Check if the user is logged in
+  try { $JWT = JWT::decode($data->JWT, $GLOBALS['JWT_secret']); }
+  catch (\Exception $e) { echo 'Authentication error'; exit; }
+
+  // Prepared statement to protect against SQL injections
+  $stmt = $conn->prepare("UPDATE $tablename SET phoneModel = ? WHERE address = '".$address."'");
+  $stmt->bindParam(1, $phoneModel);
+
+  if ($stmt->execute() === TRUE) {
+    echo "phone model for $address updated to $phoneModel";
+  }
+
+  $conn = null;
+  exit;
+}
+
+if ($request == "updateEmail") {
+  $email = $data->email;
+  $address = $data->address;
+
+  // Check if the user is logged in
+  try { $JWT = JWT::decode($data->JWT, $GLOBALS['JWT_secret']); }
+  catch (\Exception $e) { echo 'Authentication error'; exit; }
+
+  // Prepared statement to protect against SQL injections
+  $stmt = $conn->prepare("UPDATE $tablename SET email = ? WHERE address = '".$address."'");
+  $stmt->bindParam(1, $email);
+
+  if ($stmt->execute() === TRUE) {
+    echo "email for $address updated to $email";
+  }
+
+  $conn = null;
+  exit;
+}
+
+if ($request == "updatePhonenumber") {
+  $phoneNumber = $data->phoneNumber;
+  $address = $data->address;
+
+  // Check if the user is logged in
+  try { $JWT = JWT::decode($data->JWT, $GLOBALS['JWT_secret']); }
+  catch (\Exception $e) { echo 'Authentication error'; exit; }
+
+  // Prepared statement to protect against SQL injections
+  $stmt = $conn->prepare("UPDATE $tablename SET phoneNumber = ? WHERE address = '".$address."'");
+  $stmt->bindParam(1, $phoneNumber);
+
+  if ($stmt->execute() === TRUE) {
+    echo "phone number for $address updated to $phoneNumber";
+  }
+
+  $conn = null;
+  exit;
+}
+
+if ($request == "updateThief") {
+  $thief = $data->thief;
+  $address = $data->address;
+
+  // Check if the user is logged in
+  try { $JWT = JWT::decode($data->JWT, $GLOBALS['JWT_secret']); }
+  catch (\Exception $e) { echo 'Authentication error'; exit; }
+
+  // Prepared statement to protect against SQL injections
+  $stmt = $conn->prepare("UPDATE $tablename SET thief = ? WHERE address = '".$address."'");
+  $stmt->bindParam(1, $thief);
+
+  if ($stmt->execute() === TRUE) {
+    echo "thief protection for $address updated to $thief";
+  }
+
+  $conn = null;
+  exit;
+}
+
+if ($request == "updatePayinterval") {
+  $payInterval = $data->payInterval;
+  $address = $data->address;
+
+  // Check if the user is logged in
+  try { $JWT = JWT::decode($data->JWT, $GLOBALS['JWT_secret']); }
+  catch (\Exception $e) { echo 'Authentication error'; exit; }
+
+  // Prepared statement to protect against SQL injections
+  $stmt = $conn->prepare("UPDATE $tablename SET payInterval = ? WHERE address = '".$address."'");
+  $stmt->bindParam(1, $payInterval);
+
+  if ($stmt->execute() === TRUE) {
+    echo "pay interval for $address updated to $payInterval";
+  }
+
+  $conn = null;
+  exit;
+}
+
+if ($request == "updatePhoneage") {
+  $phoneAge = $data->phoneAge;
+  $address = $data->address;
+
+  // Check if the user is logged in
+  try { $JWT = JWT::decode($data->JWT, $GLOBALS['JWT_secret']); }
+  catch (\Exception $e) { echo 'Authentication error'; exit; }
+
+  // Prepared statement to protect against SQL injections
+  $stmt = $conn->prepare("UPDATE $tablename SET phoneAge = ? WHERE address = '".$address."'");
+  $stmt->bindParam(1, $phoneAge);
+
+  if ($stmt->execute() === TRUE) {
+    echo "phone age for $address updated to $phoneAge";
+  }
+
+  $conn = null;
+  exit;
+}
+
+
+
+if ($request == "updatePhoneprice") {
+  $phoneprice = $data->phoneprice;
+  $address = $data->address;
+
+  // Check if the user is logged in
+  try { $JWT = JWT::decode($data->JWT, $GLOBALS['JWT_secret']); }
+  catch (\Exception $e) { echo 'Authentication error'; exit; }
+
+  // Prepared statement to protect against SQL injections
+  $stmt = $conn->prepare("UPDATE $tablename SET phonePrice = ? WHERE address = '".$address."'");
+  $stmt->bindParam(1, $phoneprice);
+
+  if ($stmt->execute() === TRUE) {
+    echo "phone price for $address updated to $phoneprice";
+  }
+
+  $conn = null;
+  exit;
+}
+
+if ($request == "updatePremiumprice") {
+  $premiumPrice = $data->premiumPrice;
+  $address = $data->address;
+
+  // Check if the user is logged in
+  try { $JWT = JWT::decode($data->JWT, $GLOBALS['JWT_secret']); }
+  catch (\Exception $e) { echo 'Authentication error'; exit; }
+
+  // Prepared statement to protect against SQL injections
+  $stmt = $conn->prepare("UPDATE $tablename SET premiumPrice = ? WHERE address = '".$address."'");
+  $stmt->bindParam(1, $premiumPrice);
+
+  if ($stmt->execute() === TRUE) {
+    echo "premium price for $address updated to $premiumPrice";
   }
 
   $conn = null;

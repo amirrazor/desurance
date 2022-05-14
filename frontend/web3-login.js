@@ -3,6 +3,16 @@ let userLoginData = {
   ethAddress: "",
   buttonText: "Log in",
   publicName: "",
+  fullName: "",
+  homeAddress: "",
+  phoneModel: "",
+  email: "",
+  phoneNumber: "",
+  thief: "",
+  payInterval: "",
+  phoneAge: "",
+  phoneprice: "",
+  premiumPrice: "",
   JWT: "",
   config: { headers: { "Content-Type": "application/x-www-form-urlencoded" } }
 }
@@ -62,6 +72,13 @@ function showAddress() {
   document.getElementById('ethAddress').innerHTML = userLoginData.ethAddress;
 }
 
+function showContinue() {
+  document.getElementById('showContinue').style.display = '';
+}
+
+function hideContinue() {
+  document.getElementById('showContinue').style.display = 'none';
+}
 
 // Show current button text
 function showButtonText() {
@@ -95,6 +112,8 @@ async function userLogin() {
   if (userLoginData.state == "loggedIn") {
     userLoginData.state = "loggedOut";
     showMsg(userLoginData.state);
+    //hide continue button
+    hideContinue();
     userLoginData.JWT = "";
     userLoginData.buttonText = "Log in";
     showButtonText();
@@ -161,16 +180,39 @@ async function userLogin() {
             if (response.data[0] == "Success") {
               userLoginData.state = "loggedIn";
               showMsg(userLoginData.state);
+              //show continue button
+              showContinue()
               userLoginData.buttonText = "Log out";
               showButtonText();
               userLoginData.ethAddress = address;
               showAddress();
               userLoginData.publicName = response.data[1];
               getPublicName();
+              userLoginData.fullName = response.data[3];
+              getFullname();
+              userLoginData.homeAddress = response.data[4];
+              getHomeaddress();
+              userLoginData.phoneModel = response.data[5];
+              getPhonemodel();
+              userLoginData.email = response.data[6];
+              getEmail();
+              userLoginData.phoneNumber = response.data[7];
+              getPhonenumber();
+              userLoginData.phoneprice = response.data[8];
+              getPhoneprice();
+              userLoginData.premiumPrice = response.data[9];
+              getPremiumprice();
+              userLoginData.thief = response.data[10];
+              getThief();
+              userLoginData.payInterval = response.data[11];
+              getPayinterval();
+              userLoginData.phoneAge = response.data[12];
+              getPhoneage();
               userLoginData.JWT = response.data[2];
+          
               // Clear Web3 wallets data for logout
               localStorage.clear();
-            }
+            } 
           })
           .catch(function(error) {
             console.error(error);
@@ -210,4 +252,276 @@ function setPublicName() {
   .catch(function(error) {
     console.error(error);
   });
+
+}
+
+function getFullname() {
+  document.getElementById('updateFullname').value = userLoginData.fullName;
+}
+
+
+function setFullname() {
+  let value = document.getElementById('updateFullname').value;
+  axios.post(
+    backendPath+"backend/server.php",
+    {
+      request: "updateFullname",
+      address: userLoginData.ethAddress,
+      JWT: userLoginData.JWT,
+      fullName: value
+    },
+    this.config
+  )
+  .then(function(response) {
+    console.log(response.data);
+  })
+  .catch(function(error) {
+    console.error(error);
+  });
+
+}
+
+function getHomeaddress() {
+  document.getElementById('homeAddress').value = userLoginData.homeAddress;
+}
+
+
+function setHomeaddress() {
+  let value = document.getElementById('homeAddress').value;
+  axios.post(
+    backendPath+"backend/server.php",
+    {
+      request: "updateHomeaddress",
+      address: userLoginData.ethAddress,
+      JWT: userLoginData.JWT,
+      homeAddress: value
+    },
+    this.config
+  )
+  .then(function(response) {
+    console.log(response.data);
+  })
+  .catch(function(error) {
+    console.error(error);
+  });
+
+}
+
+function getPhonemodel() {
+  document.getElementById('phoneModel').value = userLoginData.phoneModel;
+}
+
+
+function setPhonemodel() {
+  let value = document.getElementById('phoneModel').value;
+  axios.post(
+    backendPath+"backend/server.php",
+    {
+      request: "updatePhonemodel",
+      address: userLoginData.ethAddress,
+      JWT: userLoginData.JWT,
+      phoneModel: value
+    },
+    this.config
+  )
+  .then(function(response) {
+    console.log(response.data);
+  })
+  .catch(function(error) {
+    console.error(error);
+  });
+
+}
+
+function getEmail() {
+  document.getElementById('email').value = userLoginData.email;
+}
+
+
+function setEmail() {
+  let value = document.getElementById('email').value;
+  axios.post(
+    backendPath+"backend/server.php",
+    {
+      request: "updateEmail",
+      address: userLoginData.ethAddress,
+      JWT: userLoginData.JWT,
+      email: value
+    },
+    this.config
+  )
+  .then(function(response) {
+    console.log(response.data);
+  })
+  .catch(function(error) {
+    console.error(error);
+  });
+
+}
+
+function getPhonenumber() {
+  document.getElementById('phoneNumber').value = userLoginData.phoneNumber;
+}
+
+
+function setPhonenumber() {
+  let value = document.getElementById('phoneNumber').value;
+  axios.post(
+    backendPath+"backend/server.php",
+    {
+      request: "updatePhonenumber",
+      address: userLoginData.ethAddress,
+      JWT: userLoginData.JWT,
+      phoneNumber: value
+    },
+    this.config
+  )
+  .then(function(response) {
+    console.log(response.data);
+  })
+  .catch(function(error) {
+    console.error(error);
+  });
+
+}
+
+function getThief() {
+  document.getElementById('thief').options[document.getElementById('thief').selectedIndex].text=userLoginData.thief;
+}
+
+
+function setThief() {
+  let value = document.getElementById('thief').options[document.getElementById('thief').selectedIndex].text;
+  axios.post(
+    backendPath+"backend/server.php",
+    {
+      request: "updateThief",
+      address: userLoginData.ethAddress,
+      JWT: userLoginData.JWT,
+      thief: value
+    },
+    this.config
+  )
+  .then(function(response) {
+    console.log(response.data);
+  })
+  .catch(function(error) {
+    console.error(error);
+  });
+
+}
+
+function getPayinterval() {
+  document.getElementById('payinterval').options[
+    document.getElementById('payinterval').selectedIndex
+  ].text = userLoginData.payInterval;
+}
+
+
+function setPayinterval() {
+  let value = document.getElementById('payinterval').options[
+    document.getElementById('payinterval').selectedIndex
+  ].text
+  axios.post(
+    backendPath+"backend/server.php",
+    {
+      request: "updatePayinterval",
+      address: userLoginData.ethAddress,
+      JWT: userLoginData.JWT,
+      payInterval: value
+    },
+    this.config
+  )
+  .then(function(response) {
+    console.log(response.data);
+  })
+  .catch(function(error) {
+    console.error(error);
+  });
+
+}
+
+function getPhoneage() {
+  document.getElementById('phoneage').options[
+    document.getElementById('phoneage').selectedIndex
+  ].text = userLoginData.phoneAge;
+}
+
+
+function setPhoneage() {
+  let value = document.getElementById('phoneage').options[
+    document.getElementById('phoneage').selectedIndex
+  ].text;
+  axios.post(
+    backendPath+"backend/server.php",
+    {
+      request: "updatePhoneage",
+      address: userLoginData.ethAddress,
+      JWT: userLoginData.JWT,
+      phoneAge: value
+    },
+    this.config
+  )
+  .then(function(response) {
+    console.log(response.data);
+  })
+  .catch(function(error) {
+    console.error(error);
+  });
+
+}
+
+
+
+
+function getPhoneprice() {
+  document.getElementById('priceinput').value = userLoginData.phoneprice;
+}
+
+
+function setPhoneprice() {
+  let value = document.getElementById('priceinput').value;
+  axios.post(
+    backendPath+"backend/server.php",
+    {
+      request: "updatePhoneprice",
+      address: userLoginData.ethAddress,
+      JWT: userLoginData.JWT,
+      phoneprice: value
+    },
+    this.config
+  )
+  .then(function(response) {
+    console.log(response.data);
+  })
+  .catch(function(error) {
+    console.error(error);
+  });
+
+}
+
+function getPremiumprice() {
+  document.querySelector('.premiumprice').textContent = userLoginData.premiumPrice;
+}
+
+
+function setPremiumprice() {
+  let value = document.querySelector('.premiumprice').textContent;
+  axios.post(
+    backendPath+"backend/server.php",
+    {
+      request: "updatePremiumprice",
+      address: userLoginData.ethAddress,
+      JWT: userLoginData.JWT,
+      premiumPrice: value
+    },
+    this.config
+  )
+  .then(function(response) {
+    console.log(response.data);
+  })
+  .catch(function(error) {
+    console.error(error);
+  });
+
 }

@@ -22,27 +22,49 @@
       <link type="text/css" rel="stylesheet" href="css/mystyle.css">
       <!-- Responsive-->
       <link rel="stylesheet" href="css/responsive.css">
-      
+      <link rel="stylesheet" href="css/spa.css">
    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
 		
 	<script type="text/javascript" src="https://unpkg.com/web3modal@1.9.0/dist/index.js"></script>
 	<script type="text/javascript" src="https://unpkg.com/@walletconnect/web3-provider@1.2.1/dist/umd/index.min.js"></script>
+    <script src="js/spa.js"></script>
+
+
+
+
+
+        <!-- Font Awesome -->
+       
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+   
+    
+    </script>
+    <script src="https://kit.fontawesome.com/28c758b0c9.js" crossorigin="anonymous"></script>
+    <!-- MDB -->
+ 
+
+
+
+
+
 </head>
 <!-- body -->
 
 <body class="main-layout">
  <!-- header -->
-<header>
+ <header>
         <div class="head_top">
             <div class="header">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+                        <div class="">
                             <div class="full">
                                 <div class="center-desk">
                                     <div class="logo">
-                                        <a href="index.php"><img src="images/logo.png" alt="#" /></a>
+                                        <a  onclick="homeNav()"><img src="images/logo.png" alt="#" class="pointcursor"/></a>
                                     </div>
                                 </div>
                             </div>
@@ -52,24 +74,15 @@
                                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
                            <span class="navbar-toggler-icon"></span>
                            </button>
+                           
                                 <div class="collapse navbar-collapse" id="navbarsExample04">
                                     <ul class="navbar-nav mr-auto">
-
-                                   
-                                    
                                         <li class="nav-item">
-                                            <a class="nav-link" href="index.php"> Home  </a>
+                                        <a onclick="homeNav()" class="nav-link pointcursor">Home</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#">About</a>
+                                        <a onclick="loginNav()" class="nav-link pointcursor">Login</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="choose.php">See Offers</a>
-                                        </li>
-
-                                      
-
-
                                     </ul>
                                
                             </nav>

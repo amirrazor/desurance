@@ -1,24 +1,20 @@
 document.querySelector('.calculate').addEventListener('click', function () {
+  
   let priceinput = Number(document.querySelector('.priceinput').value)
+
   let phoneage = document.getElementById('phoneage').options[
     document.getElementById('phoneage').selectedIndex
   ].index
+
   let payinterval = document.getElementById('payinterval').options[
     document.getElementById('payinterval').selectedIndex
   ].index
-  let manufacturer = document.getElementById('phones').options[
-    document.getElementById('phones').selectedIndex
-  ].index
+  
   let thief = document.getElementById('thief').options[
     document.getElementById('thief').selectedIndex
   ].index
 
-  if (manufacturer === 0) {
-    document.querySelector('.notice3').textContent =
-      'Please choose the brand of your phone *'
-  } else if (manufacturer > 0) {
-    document.querySelector('.notice3').textContent = ''
-  }
+
 
   if (thief === 0) {
     document.querySelector('.notice4').textContent =

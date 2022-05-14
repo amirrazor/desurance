@@ -1,0 +1,27 @@
+#login{
+    display: none;
+}
+
+#choose{
+    display: none;
+}
+
+#terms{
+    display: none;
+}
+
+#calc{
+    display: none;
+}
+
+#info{
+    display: none;
+}
+
+#review{
+    display: none;
+}
+
+.pointcursor {
+    cursor:pointer;
+}

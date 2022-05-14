@@ -9,7 +9,9 @@ $dbname = "desurance";
 $tablename = "users";
 
 try {
-        if ($servertype == "mysql") {
+        if ($servertype == "pgsql") {
+                $dsn = "pgsql:host=$servername;port=$serverport;dbname=$dbname;";
+        } elseif ($servertype == "mysql") {
                 $dsn = "mysql:host=$servername;port=$serverport;dbname=$dbname;";
         } else {
                 die ('DB config error');
