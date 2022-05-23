@@ -2,7 +2,7 @@
 require_once "lib/Keccak/Keccak.php";
 require_once "lib/Elliptic/EC.php";
 require_once "lib/Elliptic/Curves.php";
-require_once "lib/JWT/jwt_helper.php";
+require_once "lib/JWT/jwt.php";
 $GLOBALS['JWT_secret'] = '4Eac8AS2cw84easd65araADX';
 
 use Elliptic\EC;

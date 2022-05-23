@@ -27,7 +27,7 @@
                                         <div class="text-danger star">*</div></br> </label>
 
                                         <select id="thief" class="inputed">
-                                            <option value="choose">Please choose</option>
+                                            <option value="choose"></option>
                                             <option value="With">With</option>
                                             <option value="Without">Without</option>
                                         </select>
@@ -41,7 +41,7 @@
                                         <div class="text-danger star">*</div></br> </label>
 
                                         <select id="payinterval" class="inputed">
-                                            <option value="choose">Please choose</option>
+                                            <option value="choose"></option>
                                             <option value="Monthly">Monthly</option>
                                             <option value="Yearly">Yearly</option>
                                         </select>
@@ -53,7 +53,7 @@
                                                 class="text-danger star">*</div> </label></br>
 
                                         <select id="phoneage" class="inputed">
-                                            <option value="choose">Please choose</option>
+                                            <option value="choose"></option>
                                             <option value="older than 1 year">older than 1 year</option>
                                             <option value="newer than 1 year">newer than 1 year</option>
                                         </select>

@@ -32,8 +32,8 @@
 
                     </div>
                     <div id="needMetamask" style="display:none;color: rgb(255, 115, 0);" class="user-login-msg">
-                        To login, first install a Web3 wallet like the <a href="https://metamask.io/"
-                            style="color:#ff7300" target="_blank">MetaMask</a> browser extension or mobile app
+                        To login, first install a Web3 wallet, <a href="https://metamask.io/"
+                            style="color:#ff7300" target="_blank">MetaMask</a> browser extension and create an account.
                     </div>
                     <div id="needLogInToMetaMask" style="display:none;color: rgb(255, 115, 0);" class="user-login-msg">
                         Log in to your wallet account first!

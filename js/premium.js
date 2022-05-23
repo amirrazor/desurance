@@ -4,32 +4,32 @@ document.querySelector('.calculate').addEventListener('click', function () {
 
   let phoneage = document.getElementById('phoneage').options[
     document.getElementById('phoneage').selectedIndex
-  ].index
+  ].text
 
   let payinterval = document.getElementById('payinterval').options[
     document.getElementById('payinterval').selectedIndex
-  ].index
+  ].text
   
   let thief = document.getElementById('thief').options[
     document.getElementById('thief').selectedIndex
-  ].index
+  ].text
 
 
 
-  if (thief === 0) {
+  if (thief === "") {
     document.querySelector('.notice4').textContent =
       'Please choose an option with or without thief protection *'
-  } else if (thief === 1) {
+  } else if (thief === "With") {
     document.querySelector('.notice4').textContent = ''
-    if (payinterval === 0) {
+    if (payinterval === "") {
       document.querySelector('.notice2').textContent =
         'Please choose to pay monthly or yearly *'
-    } else if (payinterval === 1) {
+    } else if (payinterval === "Monthly") {
       document.querySelector('.notice2').textContent = ''
-      if (phoneage === 0) {
+      if (phoneage === "") {
         document.querySelector('.notice').textContent =
           'Please choose the purchase date of your phone *'
-      } else if (phoneage === 1) {
+      } else if (phoneage === "older than 1 year") {
         document.querySelector('.notice').textContent = ''
 
         if (!priceinput) {
@@ -50,7 +50,7 @@ document.querySelector('.calculate').addEventListener('click', function () {
             'The phone price has to be between 50 and 3000 Euros'
           document.querySelector('.premiumprice').textContent = 0
         }
-      } else if (phoneage === 2) {
+      } else if (phoneage === "newer than 1 year") {
         document.querySelector('.notice').textContent = ''
         if (!priceinput) {
           document.querySelector('.userinput').textContent =
@@ -71,12 +71,12 @@ document.querySelector('.calculate').addEventListener('click', function () {
           document.querySelector('.premiumprice').textContent = 0
         }
       }
-    } else if (payinterval === 2) {
+    } else if (payinterval === "Yearly") {
       document.querySelector('.notice2').textContent = ''
-      if (phoneage === 0) {
+      if (phoneage === "") {
         document.querySelector('.notice').textContent =
           'Please choose the purchase date of your phone *'
-      } else if (phoneage === 1) {
+      } else if (phoneage === "older than 1 year") {
         document.querySelector('.notice').textContent = ''
         if (!priceinput) {
           document.querySelector('.notice5').textContent =
@@ -99,7 +99,7 @@ document.querySelector('.calculate').addEventListener('click', function () {
             'The phone price has to be between 50 and 3000 Euros'
           document.querySelector('.premiumprice').textContent = 0
         }
-      } else if (phoneage === 2) {
+      } else if (phoneage === "newer than 1 year") {
         document.querySelector('.notice').textContent = ''
         if (!priceinput) {
           document.querySelector('.notice5').textContent =
@@ -124,17 +124,17 @@ document.querySelector('.calculate').addEventListener('click', function () {
         }
       }
     }
-  } else if (thief === 2) {
+  } else if (thief === "Without") {
     document.querySelector('.notice4').textContent = ''
-    if (payinterval === 0) {
+    if (payinterval === "") {
       document.querySelector('.notice2').textContent =
         'Please choose to pay monthly or yearly *'
-    } else if (payinterval === 1) {
+    } else if (payinterval === "Monthly") {
       document.querySelector('.notice2').textContent = ''
-      if (phoneage === 0) {
+      if (phoneage === "") {
         document.querySelector('.notice').textContent =
           'Please choose the purchase date of your phone *'
-      } else if (phoneage === 1) {
+      } else if (phoneage === "older than 1 year") {
         document.querySelector('.notice').textContent = ''
 
         if (!priceinput) {
@@ -155,7 +155,7 @@ document.querySelector('.calculate').addEventListener('click', function () {
             'The phone price has to be between 50 and 3000 Euros'
           document.querySelector('.premiumprice').textContent = 0
         }
-      } else if (phoneage === 2) {
+      } else if (phoneage === "newer than 1 year") {
         document.querySelector('.notice').textContent = ''
         if (!priceinput) {
           document.querySelector('.notice5').textContent =
@@ -176,12 +176,12 @@ document.querySelector('.calculate').addEventListener('click', function () {
           document.querySelector('.premiumprice').textContent = 0
         }
       }
-    } else if (payinterval === 2) {
+    } else if (payinterval === "Yearly") {
       document.querySelector('.notice2').textContent = ''
-      if (phoneage === 0) {
+      if (phoneage === "") {
         document.querySelector('.notice').textContent =
           'Please choose the purchase date of your phone *'
-      } else if (phoneage === 1) {
+      } else if (phoneage === "older than 1 year") {
         document.querySelector('.notice').textContent = ''
         if (!priceinput) {
           document.querySelector('.notice5').textContent =
@@ -201,7 +201,7 @@ document.querySelector('.calculate').addEventListener('click', function () {
             'The phone price has to be between 50 and 3000 Euros'
           document.querySelector('.premiumprice').textContent = 0
         }
-      } else if (phoneage === 2) {
+      } else if (phoneage === "newer than 1 year") {
         document.querySelector('.notice').textContent = ''
         if (!priceinput) {
           document.querySelector('.notice5').textContent =
