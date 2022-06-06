@@ -22,6 +22,10 @@
     display: none;
 }
 
+#payment{
+    display: none;
+}
+
 .pointcursor {
     cursor:pointer;
 }

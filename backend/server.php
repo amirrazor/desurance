@@ -30,7 +30,7 @@ if ($request == "login") {
 
   if ($nonce) {
     // If user exists, return message to sign
-    echo("Sign this message to validate that you are the owner of the account. Random string: " . $nonce);
+    echo("Sign this message to validate that you are the owner of the account. Unique nonce: " . $nonce);
   }
   else {
     // If user doesn't exist, register new user with generated nonce, then return message to sign
@@ -42,7 +42,7 @@ if ($request == "login") {
     $stmt->bindParam(2, $nonce);
 
     if ($stmt->execute() === TRUE) {
-      echo ("Sign this message to validate that you are the owner of the account. Random string: " . $nonce);
+      echo ("Sign this message to validate that you are the owner of the account. Unique nonce: " . $nonce);
     } else {
       echo "Error" . $stmt->error;
     }
@@ -63,7 +63,7 @@ if ($request == "auth") {
     $stmt->execute();
     $nonce = $stmt->fetchColumn();
 
-    $message = "Sign this message to validate that you are the owner of the account. Random string: " . $nonce;
+    $message = "Sign this message to validate that you are the owner of the account. Unique nonce: " . $nonce;
   }
 
   // Check if the message was signed with the same private key to which the public address belongs
@@ -154,6 +154,7 @@ if ($request == "auth") {
     $stmt->execute();
     $phoneAge = $stmt->fetchColumn();
     $phoneAge = htmlspecialchars($phoneAge, ENT_QUOTES, 'UTF-8');
+
 
     // Create a new random nonce for the next login
     $nonce = uniqid();
@@ -395,5 +396,27 @@ if ($request == "updatePremiumprice") {
   $conn = null;
   exit;
 }
+
+if ($request == "changePublicName")
+
+
+
+    $publicName = $data->publicName;
+    $address = $data->address;
+  
+    // Check if the user is logged in
+    try { $JWT = JWT::decode($data->JWT, $GLOBALS['JWT_secret']); }
+    catch (\Exception $e) { echo 'Authentication error'; exit; }
+  
+    // Prepared statement to protect against SQL injections
+    $stmt = $conn->prepare("UPDATE $tablename SET publicName = ? WHERE address = '".$address."'");
+    $stmt->bindParam(1, $publicName);
+  
+    if ($stmt->execute() === TRUE) {
+      echo "Public name for $address updated to $publicName";
+    }
+  
+    $conn = null;
+    exit;
 
 ?>

@@ -1,3 +1,4 @@
+
 let userLoginData = {
   state: "loggedOut",
   ethAddress: "",
@@ -70,6 +71,10 @@ function showMsg(id) {
 // Show current address
 function showAddress() {
   document.getElementById('ethAddress').innerHTML = userLoginData.ethAddress;
+}
+
+function showEthAddress(){
+  document.getElementById('showEthAddress').innerHTML = userLoginData.ethAddress;
 }
 
 function showContinue() {
@@ -186,28 +191,40 @@ async function userLogin() {
               showButtonText();
               userLoginData.ethAddress = address;
               showAddress();
+              showEthAddress();
               userLoginData.publicName = response.data[1];
               getPublicName();
+              showPublicName();
               userLoginData.fullName = response.data[3];
               getFullname();
+              showFullname();
               userLoginData.homeAddress = response.data[4];
               getHomeaddress();
+              showHomeaddress();
               userLoginData.phoneModel = response.data[5];
               getPhonemodel();
+              showPhonemodel();
               userLoginData.email = response.data[6];
               getEmail();
+              showEmail();
               userLoginData.phoneNumber = response.data[7];
               getPhonenumber();
+              showPhonenumber();
               userLoginData.phoneprice = response.data[8];
               getPhoneprice();
+              showPhoneprice();
               userLoginData.premiumPrice = response.data[9];
               getPremiumprice();
+              showPremiumprice();
               userLoginData.thief = response.data[10];
               getThief();
+              showThief();
               userLoginData.payInterval = response.data[11];
               getPayinterval();
+              showPayinterval();
               userLoginData.phoneAge = response.data[12];
               getPhoneage();
+              showPhoneage();
               userLoginData.JWT = response.data[2];
           
               // Clear Web3 wallets data for logout
@@ -228,9 +245,13 @@ async function userLogin() {
   });
 } 
 
-
 function getPublicName() {
   document.getElementById('updatePublicName').value = userLoginData.publicName;
+  console.log("Public Name: " + userLoginData.publicName)
+}
+
+function showPublicName() {
+  document.getElementById('editPublicName').innerHTML = document.getElementById('updatePublicName').value;
 }
 
 
@@ -255,10 +276,14 @@ function setPublicName() {
 
 }
 
+
 function getFullname() {
   document.getElementById('updateFullname').value = userLoginData.fullName;
 }
 
+function showFullname() {
+  document.getElementById('editFullname').innerHTML = document.getElementById('updateFullname').value;
+}
 
 function setFullname() {
   let value = document.getElementById('updateFullname').value;
@@ -283,6 +308,10 @@ function setFullname() {
 
 function getHomeaddress() {
   document.getElementById('homeAddress').value = userLoginData.homeAddress;
+}
+
+function showHomeaddress() {
+  document.getElementById('showHomeaddress').innerHTML = document.getElementById('homeAddress').value;
 }
 
 
@@ -312,6 +341,10 @@ function getPhonemodel() {
 }
 
 
+function showPhonemodel() {
+  document.getElementById('showPhonemodel').innerHTML = document.getElementById('phoneModel').value;
+}
+
 function setPhonemodel() {
   let value = document.getElementById('phoneModel').value;
   axios.post(
@@ -335,6 +368,10 @@ function setPhonemodel() {
 
 function getEmail() {
   document.getElementById('email').value = userLoginData.email;
+}
+
+function showEmail() {
+  document.getElementById('showEmail').innerHTML = document.getElementById('email').value;
 }
 
 
@@ -363,6 +400,10 @@ function getPhonenumber() {
   document.getElementById('phoneNumber').value = userLoginData.phoneNumber;
 }
 
+function showPhonenumber() {
+  document.getElementById('showPhonenumber').innerHTML = document.getElementById('phoneNumber').value;
+}
+
 
 function setPhonenumber() {
   let value = document.getElementById('phoneNumber').value;
@@ -386,7 +427,11 @@ function setPhonenumber() {
 }
 
 function getThief() {
-  document.getElementById('thief').options[document.getElementById('thief').selectedIndex].text=userLoginData.thief;
+  document.getElementById('thief').options[document.getElementById('thief').selectedIndex="0"].text=userLoginData.thief;
+}
+
+function showThief() {
+  document.getElementById('showThief').innerHTML = document.getElementById('thief').options[document.getElementById('thief').selectedIndex].text;
 }
 
 
@@ -413,15 +458,21 @@ function setThief() {
 
 function getPayinterval() {
   document.getElementById('payinterval').options[
-    document.getElementById('payinterval').selectedIndex
+    document.getElementById('payinterval').selectedIndex="0"
   ].text = userLoginData.payInterval;
+}
+
+function showPayinterval() {
+  document.getElementById('showPayinterval').innerHTML = document.getElementById('payinterval').options[
+    document.getElementById('payinterval').selectedIndex
+  ].text;
 }
 
 
 function setPayinterval() {
   let value = document.getElementById('payinterval').options[
     document.getElementById('payinterval').selectedIndex
-  ].text
+  ].text;
   axios.post(
     backendPath+"backend/server.php",
     {
@@ -443,8 +494,14 @@ function setPayinterval() {
 
 function getPhoneage() {
   document.getElementById('phoneage').options[
-    document.getElementById('phoneage').selectedIndex
+    document.getElementById('phoneage').selectedIndex="0"
   ].text = userLoginData.phoneAge;
+}
+
+function showPhoneage() {
+  document.getElementById('showPhoneage').innerHTML = document.getElementById('phoneage').options[
+    document.getElementById('phoneage').selectedIndex
+  ].text;
 }
 
 
@@ -478,6 +535,10 @@ function getPhoneprice() {
   document.getElementById('priceinput').value = userLoginData.phoneprice;
 }
 
+function showPhoneprice() {
+  document.getElementById('showPhoneprice').innerHTML = document.getElementById('priceinput').value;
+}
+
 
 function setPhoneprice() {
   let value = document.getElementById('priceinput').value;
@@ -504,6 +565,10 @@ function getPremiumprice() {
   document.querySelector('.premiumprice').textContent = userLoginData.premiumPrice;
 }
 
+function showPremiumprice() {
+  document.getElementById('showPremiumprice').innerHTML = document.querySelector('.premiumprice').textContent;
+}
+
 
 function setPremiumprice() {
   let value = document.querySelector('.premiumprice').textContent;
@@ -525,3 +590,5 @@ function setPremiumprice() {
   });
 
 }
+
+

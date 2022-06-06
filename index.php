@@ -37,6 +37,7 @@
    <?php include "calcPhone.php" ?>
    <?php include "personalInfo.php" ?>
    <?php include "reviewInfo.php" ?>
+   <?php include "payment.php" ?>
       <!--  footer -->
       
 

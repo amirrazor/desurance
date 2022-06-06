@@ -1,9 +1,4 @@
-<!-- header -->
-
-
-<!-- end header -->
-
-<!-- connect wallet -->
+<!-- login -->
 <div id="loggedIn" style="display:none;" class="user-login-msg text-white h3 bg-success font-weight-bold my-3 p-3 text-center">
     Successful Login with your Ethereum address: <span id="ethAddress"></span>
 </div>
@@ -39,7 +34,7 @@
                         Log in to your wallet account first!
                     </div>
                     <div id="signTheMessage" style="display:none;" class="user-login-msg">
-                        Sign the message with your wallet to authenticate
+                        Sign the message with your wallet to authenticate.
                     </div>
 
 
@@ -56,4 +51,4 @@
     </div>
     <?php include "includes/footer.php" ?>
 </div>
-<!-- end contact -->
+<!-- end login -->

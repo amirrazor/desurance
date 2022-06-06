@@ -81,3 +81,14 @@ function homeToLogin() {
     document.getElementById("review").style.display = "none";
     document.getElementById("info").style.display = "block";
   }
+
+
+ function reviewToPayment(){
+  document.getElementById("review").style.display = "none";
+  document.getElementById("payment").style.display = "block";
+ }
+
+ function paymentToReview(){
+  document.getElementById("payment").style.display = "none";
+  document.getElementById("review").style.display = "block";
+ }

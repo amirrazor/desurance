@@ -124,9 +124,11 @@
       <!-- Javascript files-->
       <script src="frontend/web3-login.js?v=009"></script>
 	   <script src="frontend/web3-modal.js?v=001"></script>
+     <script type="module" src="js/convertAPI.js"></script>
       <script src="js/premium.js"></script>
       <script src="js/jquery.min.js"></script>
       <script src="js/bootstrap.bundle.min.js"></script>
+      
       
    </body>
 </html>

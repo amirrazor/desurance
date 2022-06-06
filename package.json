@@ -18,7 +18,12 @@
         "@babel/core": "^7.17.8",
         "@babel/preset-env": "^7.16.11",
         "base": "^3.0.0",
+        "cheerio": "^1.0.0-rc.11",
+        "cors": "^2.8.5",
+        "express": "^4.18.1",
         "keccak": "^3.0.2",
+        "nodemon": "^2.0.16",
+        "requirejs": "^2.3.6",
         "swiper": "^8.1.0",
         "web3": "^1.7.3"
     }

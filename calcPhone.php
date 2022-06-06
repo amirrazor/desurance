@@ -26,7 +26,7 @@
                                             thief and cyber protection? (for only €2.50)</label>
                                         <div class="text-danger star">*</div></br> </label>
 
-                                        <select id="thief" class="inputed">
+                                        <select id="thief" class="inputed" onfocusout="showThief()">
                                             <option value="choose"></option>
                                             <option value="With">With</option>
                                             <option value="Without">Without</option>
@@ -40,7 +40,7 @@
                                             monthly or yearly?</label>
                                         <div class="text-danger star">*</div></br> </label>
 
-                                        <select id="payinterval" class="inputed">
+                                        <select id="payinterval" class="inputed" onfocusout="showPayinterval()">
                                             <option value="choose"></option>
                                             <option value="Monthly">Monthly</option>
                                             <option value="Yearly">Yearly</option>
@@ -52,7 +52,7 @@
                                         <label for="phoneage" class="purchasedatelabel m-3">Date of purchase: <div
                                                 class="text-danger star">*</div> </label></br>
 
-                                        <select id="phoneage" class="inputed">
+                                        <select id="phoneage" class="inputed" onfocusout="showPhoneage()">
                                             <option value="choose"></option>
                                             <option value="older than 1 year">older than 1 year</option>
                                             <option value="newer than 1 year">newer than 1 year</option>
@@ -63,7 +63,7 @@
                                             <div class="text-danger star userinput">*</div>
                                             </label></br>
                                         <input id="priceinput" class="inputed priceinput" placeholder="€" type="text"
-                                            name="Phone Price">
+                                            name="Phone Price" onfocusout="showPhoneprice()">
                                     </div>
                                     
 
@@ -101,8 +101,8 @@
                     </div>
                     <div class="text-center">
                     <button onclick="calcToTerms()"  class="read_more btn btn-default my-5  ">back</button>
-                                        <button class="read_more btn btn-default calculate my-5  ">Calculate Premium</button>
-                                        <button onclick="calcToInfo();setPremiumprice();setPhoneprice();setThief();setPayinterval();setPhoneage();"  class="read_more btn btn-default my-5  ">Continue</button>
+                                        <button class="read_more btn btn-default calculate my-5" onclick="setPremiumprice();setPhoneprice();setThief();setPayinterval();setPhoneage();">Calculate Premium</button>
+                                        <button onclick="calcToInfo();setPremiumprice();showPremiumprice()"  class="read_more btn btn-default my-5  ">Continue</button>
                     </div>
                 </div>
                 </div>

@@ -41,7 +41,7 @@ document.querySelector('.calculate').addEventListener('click', function () {
           document.querySelector('.premiumprice').textContent = 7 + 2.5
         } else if (priceinput >= 301 && priceinput <= 800) {
           document.querySelector('.notice5').textContent = ''
-          document.querySelector('.premiumprice').textContent = 11 + 2.5
+          document.querySelector('.premiumprice').textContent = 10 + 2.5
         } else if (priceinput >= 801 && priceinput <= 3000) {
           document.querySelector('.notice5').textContent = ''
           document.querySelector('.premiumprice').textContent = 13 + 2.5
@@ -89,7 +89,7 @@ document.querySelector('.calculate').addEventListener('click', function () {
         } else if (priceinput >= 301 && priceinput <= 800) {
           document.querySelector('.notice5').textContent = ''
           document.querySelector('.premiumprice').textContent =
-            11 * 12 + 2.5 * 12
+            10 * 12 + 2.5 * 12
         } else if (priceinput >= 801 && priceinput <= 3000) {
           document.querySelector('.notice5').textContent = ''
           document.querySelector('.premiumprice').textContent =
@@ -146,7 +146,7 @@ document.querySelector('.calculate').addEventListener('click', function () {
           document.querySelector('.premiumprice').textContent = 7
         } else if (priceinput >= 301 && priceinput <= 800) {
           document.querySelector('.notice5').textContent = ''
-          document.querySelector('.premiumprice').textContent = 11
+          document.querySelector('.premiumprice').textContent = 10
         } else if (priceinput >= 801 && priceinput <= 3000) {
           document.querySelector('.notice5').textContent = ''
           document.querySelector('.premiumprice').textContent = 13
@@ -192,7 +192,7 @@ document.querySelector('.calculate').addEventListener('click', function () {
           document.querySelector('.premiumprice').textContent = 7 * 12
         } else if (priceinput >= 301 && priceinput <= 800) {
           document.querySelector('.notice5').textContent = '*'
-          document.querySelector('.premiumprice').textContent = 11 * 12
+          document.querySelector('.premiumprice').textContent = 10 * 12
         } else if (priceinput >= 801 && priceinput <= 3000) {
           document.querySelector('.notice5').textContent = '*'
           document.querySelector('.premiumprice').textContent = 13 * 12

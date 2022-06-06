@@ -26,7 +26,7 @@
                                             <div class="text-danger star userinput">*</div>
                                             </label></br>
                                         <input type="text" id="updatePublicName" class="inputed priceinput" placeholder="Your username" 
-                                            name="username">
+                                            name="username" onfocusout="showPublicName()">
                                     </div>
                                         
                                     <div class="col-md-12">
@@ -34,7 +34,7 @@
                                             <div class="text-danger star userinput">*</div>
                                             </label></br>
                                         <input id="updateFullname" class="inputed priceinput" placeholder="Your full name" type="text"
-                                            name="full name">
+                                            name="fullname" onfocusout="showFullname()">
                                     </div>
 
                                     <div class="col-md-12">
@@ -42,7 +42,7 @@
                                             <div class="text-danger star userinput">*</div>
                                             </label></br>
                                         <input id="homeAddress" class="inputed priceinput" placeholder="address" type="text"
-                                            name="homeAddress">
+                                            name="homeAddress" onfocusout="showHomeaddress()">
                                     </div>
 
                                     <div class="col-md-12">
@@ -50,7 +50,7 @@
                                             <div class="text-danger star userinput">*</div>
                                             </label></br>
                                         <input id="phoneModel" class="inputed priceinput" placeholder="phone model" type="text"
-                                            name="phonemodel">
+                                            name="phonemodel" onfocusout="showPhonemodel()">
                                     </div>
 
                                     <div class="col-md-12">
@@ -58,7 +58,7 @@
                                             <div class="text-danger star userinput">*</div>
                                             </label></br>
                                         <input id="email" class="inputed priceinput" placeholder="email" type="text"
-                                            name="email">
+                                            name="email" onfocusout="showEmail()">
                                     </div>
 
                                     <div class="col-md-12">
@@ -66,7 +66,7 @@
                                             <div class="text-danger star userinput">*</div>
                                             </label></br>
                                         <input id="phoneNumber" class="inputed priceinput" placeholder="Phone number" type="text"
-                                            name="phonenumber">
+                                            name="phonenumber" onfocusout="showPhonenumber()">
                                     </div>
 
 
@@ -81,7 +81,7 @@
                                     
                                     <div class="col-sm-12 text-center">
                                         <button onclick="infoToCalc()" class="read_more btn btn-default">back</button>
-                                        <button onclick="infoToReview();setPublicName();setFullname();setHomeaddress();setPhonemodel();setEmail();setPhonenumber();" class="read_more btn btn-default">Continue</button>
+                                        <button onclick="infoToReview();setPublicName();showPublicName();setFullname();setHomeaddress();setPhonemodel();setEmail();setPhonenumber();" class="read_more btn btn-default">Continue</button>
                                     </div>
 
                                 </div>
