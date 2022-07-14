@@ -166,6 +166,7 @@ if ($request == "auth") {
     $token['address'] = $address;
     $JWT = JWT::encode($token, $GLOBALS['JWT_secret']);
 
+
     echo(json_encode(["Success", $publicName, $JWT, $fullName, $homeAddress, $phoneModel, $email, $phoneNumber, $phoneprice, $premiumPrice, $thief, $payInterval, $phoneAge]));
   } else {
     echo "Fail";

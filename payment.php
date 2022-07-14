@@ -20,31 +20,55 @@
                 </div>
 
                 <div class="col-md-12 text-danger h4">
-                                        <label for="showPremiumprice" class="phones m-5">The amount to pay is:
-                                            
-                                            </label>
-                                        <span type="text" id="showPremiumprice" name="showPremiumprice"></span> €
-                                    </div>
+                    <label for="showPremiumprice" class="phones m-5">The amount to pay is:
 
-                                    <div class="col-md-12 text-danger h4">
-                                        <label for="etherPrice" class="phones m-5">The equivalent amount in Ether:
-                                            
-                                            </label>
-                                        <span type="text" id="etherPrice" name="etherPrice">0.0074716508325147</span> Ether
-                                    </div>
-                
+                    </label>
+                    <span type="text" id="showPremiumprice" name="showPremiumprice"></span> €
+                </div>
+
+                <div class="col-md-12 text-danger h4">
+                    <label for="etherPrice" class="phones m-5">The equivalent amount in Ether:
+
+                    </label>
+                    <span type="text" id="etherPrice" name="etherPrice"></span> Ether
+                </div>
+
+                <div class="col-md-12 text-success h4">
+
+                    <span type="text" id="mining" name="mining"></span>
+                </div>
+                <div class="col-md-12 text-success h4">
+
+                    <span type="text" id="mined" name="mined"></span>
+                </div>
+                <div class="col-md-12 text-success h4">
+
+                    <span type="text" id="successConfirmation" name="successConfirmation"></span>
+                </div>
+                <div class="col-md-12 text-success h4">
+
+                    <span type="text" id="contractAddress" name="contractAddress"></span>
+                </div>
+                <div class="col-md-12 text-danger h4">
+
+                    <span type="text" id="failedTransaction" name="failedTransaction"></span>
+                </div>
+
+                <div class="col-md-12 text-danger h4">
+
                     <br>
                     <button onclick="paymentToReview()" class="read_more btn btn-default mb-5">Back</button>
-                    <button onclick="fiatToEth()" class="read_more btn btn-default mb-5">Pay now</button>
-                    <button style="display: none" onclick="" class="read_more btn btn-default mb-5">Continue</button>
-                
+                    <button id="pay" class="read_more btn btn-default mb-5">Pay now</button>
+                    <button id="showCont" style="display: none" onclick=""
+                        class="read_more btn btn-default mb-5">Continue</button>
+
 
                 </div>
             </div>
         </div>
-        
+
         <?php include "includes/footer.php" ?>
     </div>
-   
 
-<!-- end payment -->
+
+    <!-- end payment -->

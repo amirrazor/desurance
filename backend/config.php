@@ -7,6 +7,7 @@ $username = "root";
 $password = "";
 $dbname = "desurance";
 $tablename = "users";
+$apiTable = "apiInfo";
 
 try {
         if ($servertype == "mysql") {
@@ -19,3 +20,4 @@ try {
 catch (PDOException $e) {
         die($e->getMessage());
 }
+

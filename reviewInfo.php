@@ -115,7 +115,7 @@
                                     <div class="col-sm-12 text-center">
                                     
                                         <button onclick="reviewToInfo()" class="read_more btn btn-default">back</button>
-                                        <button onclick="reviewToPayment();" class="read_more btn btn-default">Continue</button>
+                                        <button onclick="reviewToPayment()" class="read_more btn btn-default">Continue</button>
                                     </div>
 
                                    

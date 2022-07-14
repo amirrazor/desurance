@@ -10,9 +10,25 @@
         "production": "mix --production"
     },
     "devDependencies": {
+        "@ethersproject/abi": "^5.6.4",
+        "@ethersproject/providers": "^5.6.8",
+        "@nomicfoundation/hardhat-chai-matchers": "^1.0.1",
+        "@nomicfoundation/hardhat-network-helpers": "^1.0.2",
+        "@nomicfoundation/hardhat-toolbox": "^1.0.2",
+        "@nomiclabs/hardhat-ethers": "npm:hardhat-deploy-ethers@^0.3.0-beta.13",
+        "@nomiclabs/hardhat-etherscan": "^3.1.0",
+        "@typechain/ethers-v5": "^10.1.0",
+        "@typechain/hardhat": "^6.1.2",
         "autoprefixer": "^10.4.4",
         "axios": "^0.25",
-        "lodash": "^4.17.21"
+        "chai": "^4.3.6",
+        "ethers": "^5.6.9",
+        "hardhat": "^2.10.0",
+        "hardhat-deploy": "^0.11.11",
+        "hardhat-gas-reporter": "^1.0.8",
+        "lodash": "^4.17.21",
+        "solidity-coverage": "^0.7.21",
+        "typechain": "^8.1.0"
     },
     "dependencies": {
         "@babel/core": "^7.17.8",
@@ -20,11 +36,16 @@
         "base": "^3.0.0",
         "cheerio": "^1.0.0-rc.11",
         "cors": "^2.8.5",
+        "dotenv": "^16.0.1",
         "express": "^4.18.1",
+        "ganache-cli": "^6.12.2",
         "keccak": "^3.0.2",
+        "mocha": "^10.0.0",
         "nodemon": "^2.0.16",
         "requirejs": "^2.3.6",
+        "solc": "^0.4.17",
         "swiper": "^8.1.0",
-        "web3": "^1.7.3"
+        "truffle-hdwallet-provider": "0.0.3",
+        "web3": "^1.0.0-beta.26"
     }
 }
