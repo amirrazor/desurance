@@ -59,8 +59,9 @@
                     <br>
                     <button onclick="paymentToReview()" class="read_more btn btn-default mb-5">Back</button>
                     <button id="pay" class="read_more btn btn-default mb-5">Pay now</button>
-                    <button id="showCont" style="display: none" onclick=""
-                        class="read_more btn btn-default mb-5">Continue</button>
+                    <button id="showUserPanel" style="display: none" onclick=""
+                        class="read_more btn btn-default mb-5">Go to
+                        panel</button>
 
 
                 </div>

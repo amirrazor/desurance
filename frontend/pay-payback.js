@@ -5,20 +5,6 @@ const payButton = document.getElementById("pay");
 payButton.onclick = pay;
 console.log(ethers);
 
-function transactionMined(transactionResponse, provider) {
-  document.getElementById(
-    "mining"
-  ).innerHTML = `mining the transaction with block hash of: ${transactionResponse.hash}`;
-  return new Promise((resolve, reject) => {
-    provider.once(transactionResponse.hash, (transactionReceipt) => {
-      document.getElementById(
-        "mined"
-      ).innerHTML = `mining completed with ${transactionReceipt.confirmations} confirmations`;
-      resolve();
-    });
-  });
-}
-
 async function pay() {
   const ethAmount = document.getElementById("etherPrice").innerHTML;
   console.log(ethAmount);
@@ -38,11 +24,25 @@ async function pay() {
       ).innerHTML = `contract address: ${contract.address}`;
       document.getElementById("failedTransaction").style.display = "none";
       document.getElementById("pay").style.display = "none";
-      document.getElementById("showCont").style.display = "";
+      document.getElementById("showUserPanel").style.display = "";
     } catch (error) {
       console.log(error);
       document.getElementById("failedTransaction").innerHTML =
         "The transaction was failed!";
     }
   }
+}
+
+function transactionMined(transactionResponse, provider) {
+  document.getElementById(
+    "mining"
+  ).innerHTML = `mining with transaction hash of: ${transactionResponse.hash}`;
+  return new Promise((resolve, reject) => {
+    provider.once(transactionResponse.hash, (transactionReceipt) => {
+      document.getElementById(
+        "mined"
+      ).innerHTML = `mining completed with ${transactionReceipt.confirmations} confirmations`;
+      resolve();
+    });
+  });
 }

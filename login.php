@@ -1,5 +1,6 @@
 <!-- login -->
-<div id="loggedIn" style="display:none;" class="user-login-msg text-white h3 bg-success font-weight-bold my-3 p-3 text-center">
+<div id="loggedIn" style="display:none;"
+    class="user-login-msg text-white h3 bg-success font-weight-bold my-3 p-3 text-center">
     Successful Login with your Ethereum address: <span id="ethAddress"></span>
 </div>
 <div id="login">
@@ -27,8 +28,8 @@
 
                     </div>
                     <div id="needMetamask" style="display:none;color: rgb(255, 115, 0);" class="user-login-msg">
-                        To login, first install a Web3 wallet, <a href="https://metamask.io/"
-                            style="color:#ff7300" target="_blank">MetaMask</a> browser extension and create an account.
+                        To login, first install a Web3 wallet, <a href="https://metamask.io/" style="color:#ff7300"
+                            target="_blank">MetaMask</a> browser extension and create an account.
                     </div>
                     <div id="needLogInToMetaMask" style="display:none;color: rgb(255, 115, 0);" class="user-login-msg">
                         Log in to your wallet account first!
@@ -42,8 +43,11 @@
                     <button onclick="loginToHome()" class="read_more btn btn-default">Back</button>
                     <button onclick="userLoginOut()" id="buttonText" class="read_more btn btn-default my-5">Log
                         in</button>
-                    <button id="showContinue" style="display: none" onclick="loginToChoose()" class="read_more btn btn-default">Continue</button>
-                
+                    <button id="showContinue" style="display: none" onclick="loginToChoose()"
+                        class="read_more btn btn-default">Continue</button>
+                    <button id="showAdminPanel" style="display: none" onclick="loginToAdmin()"
+                        class="read_more btn btn-default">Go to admin panel</button>
+
 
                 </div>
             </div>

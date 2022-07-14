@@ -1,4 +1,8 @@
-let userLoginData = {
+"use strict";
+// import { ethers } from "./ethers.js";
+// import { abi, contractAddress } from "./constants.js";
+
+const userLoginData = {
   state: "loggedOut",
   ethAddress: "",
   buttonText: "Log in",
@@ -84,6 +88,14 @@ function hideContinue() {
   document.getElementById("showContinue").style.display = "none";
 }
 
+function showAdminPanel() {
+  document.getElementById("showAdminPanel").style.display = "";
+}
+
+function hideAdminPanel() {
+  document.getElementById("showAdminPanel").style.display = "none";
+}
+
 // Show current button text
 function showButtonText() {
   document.getElementById("buttonText").innerHTML = userLoginData.buttonText;
@@ -118,6 +130,7 @@ async function userLogin() {
     showMsg(userLoginData.state);
     //hide continue button
     hideContinue();
+    hideAdminPanel();
     userLoginData.JWT = "";
     userLoginData.buttonText = "Log in";
     showButtonText();
@@ -183,52 +196,69 @@ async function userLogin() {
             )
             .then(function (response) {
               if (response.data[0] == "Success") {
-                userLoginData.state = "loggedIn";
-                showMsg(userLoginData.state);
-                //show continue button
-                showContinue();
-                userLoginData.buttonText = "Log out";
-                showButtonText();
-                userLoginData.ethAddress = address;
-                showAddress();
-                showEthAddress();
-                userLoginData.publicName = response.data[1];
-                getPublicName();
-                showPublicName();
-                userLoginData.fullName = response.data[3];
-                getFullname();
-                showFullname();
-                userLoginData.homeAddress = response.data[4];
-                getHomeaddress();
-                showHomeaddress();
-                userLoginData.phoneModel = response.data[5];
-                getPhonemodel();
-                showPhonemodel();
-                userLoginData.email = response.data[6];
-                getEmail();
-                showEmail();
-                userLoginData.phoneNumber = response.data[7];
-                getPhonenumber();
-                showPhonenumber();
-                userLoginData.phoneprice = response.data[8];
-                getPhoneprice();
-                showPhoneprice();
-                userLoginData.premiumPrice = response.data[9];
-                getPremiumprice();
-                showPremiumprice();
-                userLoginData.thief = response.data[10];
-                getThief();
-                showThief();
-                userLoginData.payInterval = response.data[11];
-                getPayinterval();
-                showPayinterval();
-                userLoginData.phoneAge = response.data[12];
-                getPhoneage();
-                showPhoneage();
-                userLoginData.JWT = response.data[2];
+                if (
+                  publicAddress != "0x7d19cfc5b03cbe0640187a111b981a807a544f26"
+                ) {
+                  userLoginData.state = "loggedIn";
+                  showMsg(userLoginData.state);
+                  //show continue button
+                  showContinue();
+                  userLoginData.buttonText = "Log out";
+                  showButtonText();
+                  userLoginData.ethAddress = address;
+                  showAddress();
+                  showEthAddress();
+                  userLoginData.publicName = response.data[1];
+                  getPublicName();
+                  showPublicName();
+                  userLoginData.fullName = response.data[3];
+                  getFullname();
+                  showFullname();
+                  userLoginData.homeAddress = response.data[4];
+                  getHomeaddress();
+                  showHomeaddress();
+                  userLoginData.phoneModel = response.data[5];
+                  getPhonemodel();
+                  showPhonemodel();
+                  userLoginData.email = response.data[6];
+                  getEmail();
+                  showEmail();
+                  userLoginData.phoneNumber = response.data[7];
+                  getPhonenumber();
+                  showPhonenumber();
+                  userLoginData.phoneprice = response.data[8];
+                  getPhoneprice();
+                  showPhoneprice();
+                  userLoginData.premiumPrice = response.data[9];
+                  getPremiumprice();
+                  showPremiumprice();
+                  userLoginData.thief = response.data[10];
+                  getThief();
+                  showThief();
+                  userLoginData.payInterval = response.data[11];
+                  getPayinterval();
+                  showPayinterval();
+                  userLoginData.phoneAge = response.data[12];
+                  getPhoneage();
+                  showPhoneage();
+                  userLoginData.JWT = response.data[2];
 
-                // Clear Web3 wallets data for logout
-                localStorage.clear();
+                  // Clear Web3 wallets data for logout
+                  localStorage.clear();
+                } else {
+                  userLoginData.state = "loggedIn";
+                  showMsg(userLoginData.state);
+                  showAdminPanel();
+                  localStorage.clear();
+                  userLoginData.buttonText = "Log out";
+                  showButtonText();
+                  userLoginData.ethAddress = address;
+                  showAddress();
+                  showEthAddress();
+                  userLoginData.publicName = response.data[1];
+                  getPublicName();
+                  showPublicName();
+                }
               }
             })
             .catch(function (error) {

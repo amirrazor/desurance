@@ -26,6 +26,14 @@
     display: none;
 }
 
+#adminPanel{
+    display: none;
+}
+
+#userPanel{
+    display: none;
+}
+
 .pointcursor {
     cursor:pointer;
 }

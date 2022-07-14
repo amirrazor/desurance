@@ -32,13 +32,9 @@
     <script type="text/javascript" src="https://unpkg.com/web3modal@1.9.0/dist/index.js"></script>
     <script type="text/javascript" src="https://unpkg.com/@walletconnect/web3-provider@1.2.1/dist/umd/index.min.js">
     </script>
-    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
     <script type="module" src="js/convertAPI.js"></script>
     <script src="js/spa.js"></script>
-    <script>
-    import dotenv from "dotenv";
-    dotenv.config();
-    </script>
+
 
 
 
