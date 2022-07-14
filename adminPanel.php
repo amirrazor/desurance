@@ -8,8 +8,12 @@
         <span type="text" id="contractAddressAdmin" name="contractAddressAdmin"></span>
     </div>
     <div class="col-md-12 text-white h4">
+        <a id="etherScanLink" href="" class="text-warning" target="_blank">Ether Scan Link</a>
+    </div>
+    <div class="col-md-12 text-white h4">
         <span type="text" id="contractBalance" name="contractBalance"></span>
     </div>
+    
 
    
         </div>

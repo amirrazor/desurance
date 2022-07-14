@@ -5,6 +5,14 @@
 </div>
 <div id="userPanel">
 
+     <div class="contact">
+        <div class="container">
+    <h3 class="text-white">Welcome Admin!</h3>
+    <div class="col-md-12 text-white h4">
+        <span type="text" id="" name=""></span>
+    </div>
+        </div>
+    </div>
     <?php include "includes/footer.php" ?>
 </div>
 <!-- end user panel -->
