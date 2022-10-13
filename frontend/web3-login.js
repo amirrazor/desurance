@@ -1,8 +1,4 @@
-"use strict";
-// import { ethers } from "./ethers.js";
-// import { abi, contractAddress } from "./constants.js";
-
-const userLoginData = {
+let userLoginData = {
   state: "loggedOut",
   ethAddress: "",
   buttonText: "Log in",
@@ -17,8 +13,22 @@ const userLoginData = {
   phoneAge: "",
   phoneprice: "",
   premiumPrice: "",
+  userPaid: "",
+  claimUserName: "",
+  claimTitle: "",
+  claimContent: "",
+  claimStatus: "",
+  claimDate: "",
+  claimPrice: "",
+  claimAddressAdmin: "",
+  claimUserNameAdmin: "",
+  claimTitleAdmin: "",
+  claimContentAdmin: "",
+  claimStatusAdmin: "",
+  claimDateAdmin: "",
+  claimPriceAdmin: "",
   JWT: "",
-  config: { headers: { "Content-Type": "application/x-www-form-urlencoded" } },
+  config: { headers: { "Content-Type": "application/json" } },
 };
 
 if (typeof backendPath == "undefined") {
@@ -99,6 +109,7 @@ function hideAdminPanel() {
 // Show current button text
 function showButtonText() {
   document.getElementById("buttonText").innerHTML = userLoginData.buttonText;
+  document.getElementById("buttonText2").innerHTML = userLoginData.buttonText;
 }
 
 async function userLoginOut() {
@@ -196,6 +207,7 @@ async function userLogin() {
             )
             .then(function (response) {
               if (response.data[0] == "Success") {
+                //if not admin
                 if (
                   publicAddress != "0x7d19cfc5b03cbe0640187a111b981a807a544f26"
                 ) {
@@ -214,6 +226,7 @@ async function userLogin() {
                   userLoginData.fullName = response.data[3];
                   getFullname();
                   showFullname();
+                  welcomeUser();
                   userLoginData.homeAddress = response.data[4];
                   getHomeaddress();
                   showHomeaddress();
@@ -241,11 +254,27 @@ async function userLogin() {
                   userLoginData.phoneAge = response.data[12];
                   getPhoneage();
                   showPhoneage();
+
+                  userLoginData.claimTitle = response.data[14];
+                  userLoginData.claimContent = response.data[15];
+                  userLoginData.claimStatus = response.data[16];
+                  userLoginData.claimDate = response.data[17];
+                  userLoginData.claimPrice = response.data[25];
+                  getClaim();
+
+                  userLoginData.userPaid = response.data[13];
+
+                  //if user has finished registration and has paid
+                  if (userLoginData.userPaid == "Paid") {
+                    getUserPaid();
+                  }
                   userLoginData.JWT = response.data[2];
 
                   // Clear Web3 wallets data for logout
                   localStorage.clear();
-                } else {
+                }
+                //if admin
+                else {
                   userLoginData.state = "loggedIn";
                   showMsg(userLoginData.state);
                   showAdminPanel();
@@ -258,6 +287,14 @@ async function userLogin() {
                   userLoginData.publicName = response.data[1];
                   getPublicName();
                   showPublicName();
+                  userLoginData.claimAddressAdmin = response.data[18];
+                  userLoginData.claimUserNameAdmin = response.data[19];
+                  userLoginData.claimTitleAdmin = response.data[20];
+                  userLoginData.claimContentAdmin = response.data[21];
+                  userLoginData.claimStatusAdmin = response.data[22];
+                  userLoginData.claimDateAdmin = response.data[23];
+                  userLoginData.claimPriceAdmin = response.data[24];
+                  getClaimAdmin();
                 }
               }
             })
@@ -272,6 +309,12 @@ async function userLogin() {
     .catch(function (error) {
       console.error(error);
     });
+}
+
+function welcomeUser() {
+  document.getElementById("welcomeUser").innerHTML = `welcome ${
+    document.getElementById("updateFullname").value
+  }!`;
 }
 
 function getPublicName() {
@@ -597,17 +640,17 @@ function setPhoneprice() {
 }
 
 function getPremiumprice() {
-  document.querySelector(".premiumprice").textContent =
+  document.getElementById("premiumPrice").textContent =
     userLoginData.premiumPrice;
 }
 
 function showPremiumprice() {
   document.getElementById("showPremiumprice").innerHTML =
-    document.querySelector(".premiumprice").textContent;
+    document.getElementById("premiumPrice").textContent;
 }
 
 function setPremiumprice() {
-  let value = document.querySelector(".premiumprice").textContent;
+  let value = document.getElementById("premiumPrice").textContent;
   axios
     .post(
       backendPath + "backend/server.php",
@@ -625,4 +668,403 @@ function setPremiumprice() {
     .catch(function (error) {
       console.error(error);
     });
+}
+
+function setClaim() {
+  document.getElementById("claimTitleArray" + i).innerHTML =
+    document.getElementById("claimTitle").value;
+  document.getElementById("claimContentArray" + i).innerHTML =
+    document.getElementById("claimContent").value;
+  document.getElementById("claimStatusArray" + i).innerHTML = "To be reviewed";
+  document.getElementById("claimDateArray" + i).innerHTML = "";
+  document.getElementById("claimPriceArray" + i).innerHTML = "";
+  let valueFullName = document.getElementById("updateFullname").value;
+  let valueClaimTitle = document.getElementById("claimTitle").value;
+  let valueClaimContent = document.getElementById("claimContent").value;
+  axios
+    .post(
+      backendPath + "backend/server.php",
+      {
+        request: "setClaim",
+        address: userLoginData.ethAddress,
+        JWT: userLoginData.JWT,
+        claimUserName: valueFullName,
+        claimTitle: valueClaimTitle,
+        claimContent: valueClaimContent,
+      },
+      this.config
+    )
+    .then(function (response) {
+      console.log(response.data);
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+  document.getElementById("claimSuccessful").textContent =
+    "Claim has been successfully sent";
+  document.getElementById("claimNotice").textContent =
+    "Please log in later to see changes to your claim's status";
+}
+
+function getClaim() {
+  let tableTagUser =
+    '<table class="table table-bordered table-hover text-white mb-5"><thead><tr><th>Claim title</th><th>Claim content</th><th>Claim status</th><th>Date</th><th>Claim price</th></tr></thead><tbody>';
+
+  let claimTitleArray = userLoginData.claimTitle;
+  let claimContentArray = userLoginData.claimContent;
+  let claimStatusArray = userLoginData.claimStatus;
+  let claimDateArray = userLoginData.claimDate;
+  let claimPriceArray = userLoginData.claimPrice;
+
+  for (i = 0; i < claimTitleArray.length; i++) {
+    tableTagUser += "<tr>";
+    tableTagUser +=
+      '<td id="claimTitleArray' + i + '">' + claimTitleArray[i] + "</td>";
+    tableTagUser +=
+      '<td id="claimContentArray' + i + '">' + claimContentArray[i] + "</td>";
+    tableTagUser +=
+      '<td id="claimStatusArray' + i + '">' + claimStatusArray[i] + "</td>";
+    tableTagUser +=
+      '<td id="claimDateArray' + i + '">' + claimDateArray[i] + "</td>";
+    tableTagUser +=
+      '<td id="claimPriceArray' + i + '">' + claimPriceArray[i] + "</td>";
+    tableTagUser += "</tr>";
+  }
+  tableTagUser += "<tr>";
+  tableTagUser += '<td id="claimTitleArray' + i + '"></td>';
+  tableTagUser += '<td id="claimContentArray' + i + '"></td>';
+  tableTagUser += '<td id="claimStatusArray' + i + '"></td>';
+  tableTagUser += '<td id="claimDateArray' + i + '"></td>';
+  tableTagUser += '<td id="claimPriceArray' + i + '"></td>';
+  tableTagUser += "</tr>";
+  tableTagUser += "</tbody></table>";
+  document.getElementById("table-box-user").innerHTML = tableTagUser;
+}
+let customerAddressId = "";
+
+function getClaimAdmin() {
+  let tableTag =
+    '<table class="table table-bordered table-hover text-white mb-5"><thead><tr><th>User Address</th><th>Full Name</th><th>Claim title</th><th>Claim content</th><th>Claim status</th><th>Date</th><th>Claim Price</th><th>Review</th></tr></thead><tbody>';
+  reviewButtonId = 0;
+  let claimAddressAdminArray = userLoginData.claimAddressAdmin;
+  let claimUserNameAdminArray = userLoginData.claimUserNameAdmin;
+  let claimTitleAdminArray = userLoginData.claimTitleAdmin;
+  let claimContentAdminArray = userLoginData.claimContentAdmin;
+  let claimStatusAdminArray = userLoginData.claimStatusAdmin;
+  let claimDateAdminArray = userLoginData.claimDateAdmin;
+  let claimDatePriceArray = userLoginData.claimPriceAdmin;
+  i = 0;
+  for (i; i < claimTitleAdminArray.length; i++) {
+    tableTag += "<tr>";
+    tableTag +=
+      '<td id="claimAddressAdminArray' +
+      reviewButtonId +
+      '">' +
+      claimAddressAdminArray[i] +
+      "</td>";
+    tableTag +=
+      '<td id="claimUserNameAdminArray' +
+      reviewButtonId +
+      '">' +
+      claimUserNameAdminArray[i] +
+      "</td>";
+    tableTag +=
+      '<td id="claimTitleAdminArray' +
+      reviewButtonId +
+      '">' +
+      claimTitleAdminArray[i] +
+      "</td>";
+    tableTag +=
+      '<td id="claimContentAdminArray' +
+      reviewButtonId +
+      '">' +
+      claimContentAdminArray[i] +
+      "</td>";
+    tableTag +=
+      '<td id="claimStatusAdminArray' +
+      reviewButtonId +
+      '">' +
+      claimStatusAdminArray[i] +
+      "</td>";
+    tableTag +=
+      '<td id="claimDateAdminArray' +
+      reviewButtonId +
+      '">' +
+      claimDateAdminArray[i] +
+      "</td>";
+    tableTag +=
+      '<td id="claimDatePriceArray' +
+      reviewButtonId +
+      '">' +
+      claimDatePriceArray[i] +
+      "</td>";
+    tableTag +=
+      '<td><button onclick="" id="reviewButton' +
+      reviewButtonId +
+      '" class="btn btn-default">Review</button></td>';
+    reviewButtonId++;
+    tableTag += "</tr>";
+  }
+  tableTag += "</tbody></table>";
+  document.getElementById("table-box").innerHTML = tableTag;
+
+  let counter = 0;
+  let button = document.getElementById("reviewButton" + counter);
+
+  while (button) {
+    button.addEventListener("click", function () {
+      id_number = parseInt(this.id.replace(/[^0-9.]/g, ""));
+
+      document.getElementById("adminPanel").style.display = "none";
+      document.getElementById("reviewClaimPanel").style.display = "block";
+
+      let tableTagSingle =
+        '<table class="table table-bordered table-hover text-white"><thead><tr><th>User Address</th><th>Full Name</th><th>Claim title</th><th>Claim content</th><th>Claim status</th><th>Date</th><th>Claim Price</th></tr></thead><tbody>';
+
+      tableTagSingle += "<tr>";
+      tableTagSingle +=
+        '<td id="claimAddressAdminArraySingle' +
+        id_number +
+        '">' +
+        claimAddressAdminArray[id_number] +
+        "</td>";
+      tableTagSingle +=
+        '<td id="claimUserNameAdminArraySingle' +
+        id_number +
+        '">' +
+        claimUserNameAdminArray[id_number] +
+        "</td>";
+      tableTagSingle +=
+        '<td id="claimTitleAdminArraySingle' +
+        id_number +
+        '">' +
+        claimTitleAdminArray[id_number] +
+        "</td>";
+      tableTagSingle +=
+        '<td id="claimContentAdminArraySingle' +
+        id_number +
+        '">' +
+        claimContentAdminArray[id_number] +
+        "</td>";
+      tableTagSingle +=
+        '<td id="claimStatusAdminArraySingle' +
+        id_number +
+        '">' +
+        claimStatusAdminArray[id_number] +
+        "</td>";
+      tableTagSingle +=
+        '<td id="claimDateAdminArraySingle' +
+        id_number +
+        '">' +
+        claimDateAdminArray[id_number] +
+        "</td>";
+      tableTagSingle +=
+        '<td id="claimDatePriceArraySingle' +
+        id_number +
+        '">' +
+        claimDatePriceArray[id_number] +
+        "</td>";
+      tableTagSingle += "</tr>";
+      tableTagSingle += "</tbody></table>";
+      document.getElementById("updateClaimPrice").value =
+        userLoginData.claimPriceAdmin[id_number];
+      document.getElementById("customerAddressClaim").textContent =
+        claimAddressAdminArray[id_number];
+      customerAddressId = document.getElementById(
+        "customerAddressClaim"
+      ).textContent;
+      console.log(customerAddressId);
+      document.getElementById("showClaimPrice").textContent =
+        document.getElementById("updateClaimPrice").value;
+
+      document.getElementById("claimReviewSingle").innerHTML = tableTagSingle;
+
+      let response = null;
+      new Promise(async (resolve, reject) => {
+        try {
+          response = await axios.get(
+            "https://thingproxy.freeboard.io/fetch/https://pro-api.coinmarketcap.com/v2/tools/price-conversion?amount=1&id=1027&convert_id=2790",
+            {
+              headers: {
+                "X-CMC_PRO_API_KEY": "0a46df46-e1a8-4f15-9aa4-4b20acd16713",
+              },
+            }
+          );
+        } catch (ex) {
+          response = null;
+          // error
+          console.log(ex);
+          reject(ex);
+        }
+        if (response) {
+          // success
+          const jsonClaim = response.data.data.quote[2790].price;
+          const convertClaim = claimDatePriceArray[id_number] / jsonClaim;
+          const claimInEther = convertClaim.toFixed(8);
+          document.getElementById("claimInEther").innerHTML = claimInEther;
+          console.log(jsonClaim);
+          console.log(convertClaim);
+          console.log(document.getElementById("updateClaimPrice").value);
+          resolve(jsonClaim);
+        }
+      });
+    });
+    button = document.getElementById("reviewButton" + counter++);
+
+    setClaimPrice = function () {
+      document.getElementById("showClaimPrice").innerHTML =
+        document.getElementById("updateClaimPrice").value;
+
+      document.getElementById("claimStatusAdminArray" + id_number).innerHTML =
+        "Approved";
+      document.getElementById("claimDatePriceArray" + id_number).innerHTML =
+        document.getElementById("updateClaimPrice").value;
+
+      document.getElementById(
+        "claimStatusAdminArraySingle" + id_number
+      ).innerHTML = "Approved";
+      document.getElementById(
+        "claimDatePriceArraySingle" + id_number
+      ).innerHTML = document.getElementById("updateClaimPrice").value;
+
+      claimStatusAdminArray[id_number] = "Approved";
+      claimDatePriceArray[id_number] =
+        document.getElementById("updateClaimPrice").value;
+
+      let value = document.getElementById("updateClaimPrice").value;
+      let approved = "Approved";
+      let userId = id_number;
+
+      axios
+        .post(
+          backendPath + "backend/server.php",
+          {
+            request: "updateClaimPrice",
+            claimPrice: value,
+            approvement: approved,
+            user_id: userId,
+          },
+          this.config
+        )
+        .then(function (response) {
+          console.log(response.data);
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    };
+
+    dissapproveClaim = function () {
+      document.getElementById("claimStatusAdminArray" + id_number).innerHTML =
+        "Dissapproved";
+
+      document.getElementById(
+        "claimStatusAdminArraySingle" + id_number
+      ).innerHTML = "Dissapproved";
+
+      claimStatusAdminArray[id_number] = "Dissapproved";
+
+      let dissapproved = "Dissapproved";
+      let userId = id_number;
+
+      axios
+        .post(
+          backendPath + "backend/server.php",
+          {
+            request: "dissapproveClaim",
+
+            dissapprovement: dissapproved,
+            user_id: userId,
+          },
+          this.config
+        )
+        .then(function (response) {
+          console.log(response.data);
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    };
+
+    claimPaidStatus = function () {
+      document.getElementById("claimStatusAdminArray" + id_number).innerHTML =
+        "Successfully paid";
+      document.getElementById(
+        "claimStatusAdminArraySingle" + id_number
+      ).innerHTML = "Successfully paid";
+      claimStatusAdminArray[id_number] = "Successfully paid";
+
+      let claimPaid = "Successfully paid";
+      let userId = id_number;
+
+      axios
+        .post(
+          backendPath + "backend/server.php",
+          {
+            request: "claimPaidStatus",
+
+            claimPaidStatus: claimPaid,
+            user_id: userId,
+          },
+          this.config
+        )
+        .then(function (response) {
+          console.log(response.data);
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    };
+  }
+}
+
+function setUserPaid() {
+  if (document.getElementById("pay").innerHTML == "Paid") {
+    let value = document.getElementById("pay").innerHTML;
+    axios
+      .post(
+        backendPath + "backend/server.php",
+        {
+          request: "userPaid",
+          address: userLoginData.ethAddress,
+          JWT: userLoginData.JWT,
+          userPaid: value,
+        },
+        this.config
+      )
+      .then(function (response) {
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  }
+}
+
+function getUserPaid() {
+  document.getElementById("userPanel").style.display = "block";
+  document.getElementById("home").style.display = "none";
+  document.getElementById("login").style.display = "none";
+  document.getElementById("choose").style.display = "none";
+  document.getElementById("terms").style.display = "none";
+  document.getElementById("calc").style.display = "none";
+  document.getElementById("info").style.display = "none";
+  document.getElementById("review").style.display = "none";
+  document.getElementById("payment").style.display = "none";
+  document.getElementById("adminPanel").style.display = "none";
+  document.getElementById("reviewClaimPanel").style.display = "none";
+}
+
+function logOutNav() {
+  document.getElementById("login").style.display = "block";
+  document.getElementById("userPanel").style.display = "none";
+  document.getElementById("home").style.display = "none";
+  document.getElementById("choose").style.display = "none";
+  document.getElementById("terms").style.display = "none";
+  document.getElementById("calc").style.display = "none";
+  document.getElementById("info").style.display = "none";
+  document.getElementById("review").style.display = "none";
+  document.getElementById("payment").style.display = "none";
+  document.getElementById("adminPanel").style.display = "none";
+  document.getElementById("reviewClaimPanel").style.display = "none";
 }

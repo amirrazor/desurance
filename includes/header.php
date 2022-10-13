@@ -29,10 +29,12 @@
 
     <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
 
-    <script type="text/javascript" src="https://unpkg.com/web3modal@1.9.0/dist/index.js"></script>
-    <script type="text/javascript" src="https://unpkg.com/@walletconnect/web3-provider@1.2.1/dist/umd/index.min.js">
+    <script type="text/javascript" src="https://unpkg.com/web3modal@1.9.8/dist/index.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/@walletconnect/web3-provider@1.7.8/dist/umd/index.min.js">
+    </script>
     </script>
     <script type="module" src="js/convertAPI.js"></script>
+    <script type="module" src="js/convertAPIClaim.js"></script>
     <script src="js/spa.js"></script>
 
 
@@ -86,10 +88,11 @@
                                 <div class="collapse navbar-collapse" id="navbarsExample04">
                                     <ul class="navbar-nav mr-auto">
                                         <li class="nav-item">
-                                            <a onclick="homeNav()" class="nav-link pointcursor">Home</a>
+                                            <a onclick="homeNav()" class="nav-link pointcursor">HOME</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a onclick="loginNav()" class="nav-link pointcursor">Login</a>
+                                            <a onclick="userLoginOut();logOutNav()" id="buttonText2"
+                                                class="nav-link pointcursor">LOG IN</a>
                                         </li>
                                     </ul>
 

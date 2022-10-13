@@ -1,12 +1,7 @@
-//users should be able to pay
-//the manager should be able to send a certain amount of money to a user that has claimed insurance
-
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.7;
 
-
 contract Desurance {
-
     address public manager;
 
     constructor() {

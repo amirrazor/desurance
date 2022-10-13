@@ -1,7 +1,7 @@
 
             <!-- accept insurance terms -->
             <div id="terms">
-            <div id="contact" class="contact">
+            <div class="contact">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">

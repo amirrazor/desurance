@@ -1,4 +1,4 @@
-document.querySelector(".convertor").addEventListener("click", function () {
+document.querySelector("#claimApprove").addEventListener("click", function () {
   let response = null;
   new Promise(async (resolve, reject) => {
     try {
@@ -18,20 +18,15 @@ document.querySelector(".convertor").addEventListener("click", function () {
     }
     if (response) {
       // success
-      const json = response.data.data.quote[2790].price;
-      const convert =
-        document.getElementById("premiumPrice").textContent / json;
-      const inEther = convert.toFixed(8);
-      document.getElementById("etherPrice").innerHTML = inEther;
-
+      const jsonClaim = response.data.data.quote[2790].price;
       const convertClaim =
-        document.getElementById("updateClaimPrice").value / json;
+        document.getElementById("updateClaimPrice").value / jsonClaim;
       const claimInEther = convertClaim.toFixed(8);
       document.getElementById("claimInEther").innerHTML = claimInEther;
-      console.log(json);
+      console.log(jsonClaim);
       console.log(convertClaim);
       console.log(document.getElementById("updateClaimPrice").value);
-      resolve(json);
+      resolve(jsonClaim);
     }
   });
 });

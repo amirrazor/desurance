@@ -124,9 +124,9 @@
 <script src="frontend/web3-modal.js?v=001"></script>
 <script src="frontend/pay-payback.js" type="module"></script>
 <script src="frontend/admin.js" type="module"></script>
-<script src="js/premium.js"></script>
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/premium.js"></script>
 
 
 </body>

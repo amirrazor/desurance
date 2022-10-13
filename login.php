@@ -4,7 +4,7 @@
     Successful Login with your Ethereum address: <span id="ethAddress"></span>
 </div>
 <div id="login">
-    <div id="contact" class="contact">
+    <div class="contact">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">

@@ -1,7 +1,7 @@
 <!-- payment -->
 
 <div id="payment">
-    <div id="contact" class="contact">
+    <div class="contact">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -33,7 +33,7 @@
                     <span type="text" id="etherPrice" name="etherPrice"></span> Ether
                 </div>
 
-                <div class="col-md-12 text-success h4">
+                <div class="col-md-12 text-warning h4">
 
                     <span type="text" id="mining" name="mining"></span>
                 </div>
@@ -59,7 +59,7 @@
                     <br>
                     <button onclick="paymentToReview()" class="read_more btn btn-default mb-5">Back</button>
                     <button id="pay" class="read_more btn btn-default mb-5">Pay now</button>
-                    <button id="showUserPanel" style="display: none" onclick=""
+                    <button onclick="paymentToUserPanel()" id="showUserPanel" style="display: none"
                         class="read_more btn btn-default mb-5">Go to
                         panel</button>
 
@@ -70,6 +70,6 @@
 
         <?php include "includes/footer.php" ?>
     </div>
+</div>
 
-
-    <!-- end payment -->
+<!-- end payment -->

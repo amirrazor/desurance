@@ -1,6 +1,6 @@
 <!-- Calculate insurance premium -->
 <div id="calc">
-    <div id="contact" class="contact">
+    <div class="contact">
         <div class="container">
 
             <div class="col-md-12">
@@ -17,8 +17,6 @@
 
                     <div class="row">
                         <div class="main_form">
-
-
 
                             <div class="col-md-12">
                                 <label for="thief" class="purchasedatelabel m-2">Would you like to add extra
@@ -61,16 +59,9 @@
                                 <label for="priceinput" class="phones m-3">Enter your phone's purchase price:
                                     <div class="text-danger star userinput">*</div>
                                 </label></br>
-                                <input id="priceinput" class="inputed priceinput" placeholder="€" type="text"
-                                    name="Phone Price" onfocusout="showPhoneprice()">
+                                <input id="priceinput" class="inputed" placeholder="€" type="text" name="Phone Price"
+                                    onfocusout="showPhoneprice()">
                             </div>
-
-
-
-
-
-
-
 
                             <div class="col-md-12">
                                 <div class="premiumpricelabel text-white row h3 font-weight-bold m-2">
@@ -88,20 +79,13 @@
                             <div class="notice5 text-warning h3">Please note that the end-payment will be converted to
                                 ETH (in ethereum's Rinkeby testnet)</div>
 
-
-
-
-
                         </div>
-
-
-
                     </div>
                 </div>
             </div>
             <div class="text-center">
                 <button onclick="calcToTerms()" class="read_more btn btn-default my-5  ">back</button>
-                <button class="read_more btn btn-default calculate my-5"
+                <button id="calculate" class="calculate read_more btn btn-default my-5"
                     onclick="setPremiumprice();setPhoneprice();setThief();setPayinterval();setPhoneage();">Calculate
                     Premium</button>
                 <button onclick="calcToInfo();setPremiumprice();showPremiumprice()"

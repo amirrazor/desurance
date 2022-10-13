@@ -699,7 +699,7 @@ button {
     color: rgb(0, 0, 0);
 }
 
-#contact *::placeholder {
+.contact *::placeholder {
     color: #000000;
     opacity: 3;
 }

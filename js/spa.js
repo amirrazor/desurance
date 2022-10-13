@@ -94,7 +94,22 @@ function paymentToReview() {
   document.getElementById("review").style.display = "block";
 }
 
+function paymentToUserPanel() {
+  document.getElementById("payment").style.display = "none";
+  document.getElementById("userPanel").style.display = "block";
+}
+
 function loginToAdmin() {
-  document.getElementById("login").style.display = "none";
   document.getElementById("adminPanel").style.display = "block";
+  document.getElementById("login").style.display = "none";
+}
+
+function AdminToReviewClaim() {
+  document.getElementById("adminPanel").style.display = "none";
+  document.getElementById("reviewClaimPanel").style.display = "block";
+}
+
+function ReviewClaimToAdmin() {
+  document.getElementById("adminPanel").style.display = "block";
+  document.getElementById("reviewClaimPanel").style.display = "none";
 }

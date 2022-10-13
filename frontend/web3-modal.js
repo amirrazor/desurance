@@ -4,7 +4,7 @@ const Web3Modal = window.Web3Modal.default;
 const WalletConnectProvider = window.WalletConnectProvider.default;
 
 // Web3modal instance
-let web3Modal
+let web3Modal;
 
 // Chosen wallet provider given by the dialog window
 let provider;
@@ -25,7 +25,7 @@ function web3ModalInit() {
       options: {
         // Mikko's test key - don't copy as your mileage may vary
         infuraId: "8043bb2cf99347b1bfadfb233c5325c0",
-      }
+      },
     },
   };
 
@@ -38,7 +38,7 @@ function web3ModalInit() {
 
 async function fetchAccountData() {
   web3ModalProv = new Web3(provider);
- 
+
   // Subscribe to accounts change
   provider.on("accountsChanged", (accounts) => {
     console.log(accounts);
@@ -60,10 +60,9 @@ async function refreshAccountData() {
 }
 
 async function onConnectLoadWeb3Modal() {
-
   try {
     provider = await web3Modal.connect();
-  } catch(e) {
+  } catch (e) {
     console.log("Could not get a wallet connection", e);
     return;
   }
@@ -71,6 +70,6 @@ async function onConnectLoadWeb3Modal() {
   await refreshAccountData();
 }
 
-window.addEventListener('load', async () => {
+window.addEventListener("load", async () => {
   web3ModalInit();
 });

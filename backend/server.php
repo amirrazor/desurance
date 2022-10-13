@@ -22,6 +22,7 @@ if (!empty($data->address)) {
 if ($request == "login") {
   $address = $data->address;
 
+
   // Prepared statement to protect against SQL injections
   $stmt = $conn->prepare("SELECT nonce FROM $tablename WHERE address = ?");
   $stmt->bindParam(1, $address);
@@ -40,6 +41,7 @@ if ($request == "login") {
     $stmt = $conn->prepare("INSERT INTO $tablename (address, nonce) VALUES (?, ?)");
     $stmt->bindParam(1, $address);
     $stmt->bindParam(2, $nonce);
+
 
     if ($stmt->execute() === TRUE) {
       echo ("Sign this message to validate that you are the owner of the account. Unique nonce: " . $nonce);
@@ -155,6 +157,71 @@ if ($request == "auth") {
     $phoneAge = $stmt->fetchColumn();
     $phoneAge = htmlspecialchars($phoneAge, ENT_QUOTES, 'UTF-8');
 
+    $stmt = $conn->prepare("SELECT userPaid FROM $tablename WHERE address = ?");
+    $stmt->bindParam(1, $address);
+    $stmt->execute();
+    $userPaid = $stmt->fetchColumn();
+    $userPaid = htmlspecialchars($userPaid, ENT_QUOTES, 'UTF-8');
+
+
+
+    $stmt = $conn->prepare("SELECT claim_title FROM $claim_table WHERE user_address = ?");
+    $stmt->bindParam(1, $address);
+    $stmt->execute();
+    $claimTitle = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
+    
+    $stmt = $conn->prepare("SELECT claim_content FROM $claim_table WHERE user_address = ?");
+    $stmt->bindParam(1, $address);
+    $stmt->execute();
+    $claimContent = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
+    
+    $stmt = $conn->prepare("SELECT claim_status FROM $claim_table WHERE user_address = ?");
+    $stmt->bindParam(1, $address);
+    $stmt->execute();
+    $claimStatus = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
+    
+    $stmt = $conn->prepare("SELECT claim_date FROM $claim_table WHERE user_address = ?");
+    $stmt->bindParam(1, $address);
+    $stmt->execute();
+    $claimDate = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
+
+    $stmt = $conn->prepare("SELECT claim_price FROM $claim_table WHERE user_address = ?");
+    $stmt->bindParam(1, $address);
+    $stmt->execute();
+    $claimPrice = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
+
+
+
+
+    $stmt = $conn->prepare("SELECT user_address FROM $claim_table");
+    $stmt->execute();
+    $claimAddressAdmin = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
+
+    $stmt = $conn->prepare("SELECT claim_user_name FROM $claim_table");
+    $stmt->execute();
+    $claimUserNameAdmin = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
+
+    $stmt = $conn->prepare("SELECT claim_title FROM $claim_table");
+    $stmt->execute();
+    $claimTitleAdmin = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
+    
+    $stmt = $conn->prepare("SELECT claim_content FROM $claim_table");
+    $stmt->execute();
+    $claimContentAdmin = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
+    
+    $stmt = $conn->prepare("SELECT claim_status FROM $claim_table");
+    $stmt->execute();
+    $claimStatusAdmin = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
+    
+    $stmt = $conn->prepare("SELECT claim_date FROM $claim_table");
+    $stmt->execute();
+    $claimDateAdmin = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
+
+        $stmt = $conn->prepare("SELECT claim_price FROM $claim_table");
+    $stmt->execute();
+    $claimPriceAdmin = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
+   
+
 
     // Create a new random nonce for the next login
     $nonce = uniqid();
@@ -166,8 +233,8 @@ if ($request == "auth") {
     $token['address'] = $address;
     $JWT = JWT::encode($token, $GLOBALS['JWT_secret']);
 
-
-    echo(json_encode(["Success", $publicName, $JWT, $fullName, $homeAddress, $phoneModel, $email, $phoneNumber, $phoneprice, $premiumPrice, $thief, $payInterval, $phoneAge]));
+    
+    echo(json_encode(["Success", $publicName, $JWT, $fullName, $homeAddress, $phoneModel, $email, $phoneNumber, $phoneprice, $premiumPrice, $thief, $payInterval, $phoneAge, $userPaid, $claimTitle, $claimContent , $claimStatus, $claimDate,$claimAddressAdmin,$claimUserNameAdmin, $claimTitleAdmin, $claimContentAdmin , $claimStatusAdmin, $claimDateAdmin, $claimPriceAdmin, $claimPrice]));
   } else {
     echo "Fail";
   }
@@ -190,6 +257,26 @@ if ($request == "updatePublicName") {
 
   if ($stmt->execute() === TRUE) {
     echo "Public name for $address updated to $publicName";
+  }
+
+  $conn = null;
+  exit;
+}
+
+if ($request == "userPaid") {
+  $userPaid = $data->userPaid;
+  $address = $data->address;
+
+  // Check if the user is logged in
+  try { $JWT = JWT::decode($data->JWT, $GLOBALS['JWT_secret']); }
+  catch (\Exception $e) { echo 'Authentication error'; exit; }
+
+  // Prepared statement to protect against SQL injections
+  $stmt = $conn->prepare("UPDATE $tablename SET userPaid = ? WHERE address = '".$address."'");
+  $stmt->bindParam(1, $userPaid);
+
+  if ($stmt->execute() === TRUE) {
+    echo "user payment status for $address updated to $userPaid";
   }
 
   $conn = null;
@@ -398,9 +485,7 @@ if ($request == "updatePremiumprice") {
   exit;
 }
 
-if ($request == "changePublicName")
-
-
+if ($request == "changePublicName"){
 
     $publicName = $data->publicName;
     $address = $data->address;
@@ -416,8 +501,115 @@ if ($request == "changePublicName")
     if ($stmt->execute() === TRUE) {
       echo "Public name for $address updated to $publicName";
     }
-  
+
     $conn = null;
     exit;
+}
+
+
+    if ($request == "updateUserPaid") {
+  $publicName = $data->publicName;
+  $address = $data->address;
+
+  // Check if the user is logged in
+  try { $JWT = JWT::decode($data->JWT, $GLOBALS['JWT_secret']); }
+  catch (\Exception $e) { echo 'Authentication error'; exit; }
+
+  // Prepared statement to protect against SQL injections
+  $stmt = $conn->prepare("UPDATE $tablename SET publicName = ? WHERE address = '".$address."'");
+  $stmt->bindParam(1, $publicName);
+
+  if ($stmt->execute() === TRUE) {
+    echo "Public name for $address updated to $publicName";
+  }
+
+  $conn = null;
+  exit;
+}
+
+
+    if ($request == "setClaim") {
+      $claimUserName = $data->claimUserName;
+      $claimTitle = $data->claimTitle;
+      $claimContent = $data->claimContent;
+      $address = $data->address;
+
+
+  // Check if the user is logged in
+  try { $JWT = JWT::decode($data->JWT, $GLOBALS['JWT_secret']); }
+  catch (\Exception $e) { echo 'Authentication error'; exit; }
+
+  // Prepared statement to protect against SQL injections
+  $stmt = 
+  $conn->prepare
+  ("INSERT INTO $claim_table (user_address,claim_user_name,claim_title,claim_content)  VALUES (?,?,?,?)");
+  $stmt->bindParam(1, $address);
+  $stmt->bindParam(2, $claimUserName);
+  $stmt->bindParam(3, $claimTitle);
+  $stmt->bindParam(4, $claimContent);
+  
+
+  if ($stmt->execute() === TRUE) {
+    echo "claim created";
+  }
+
+  $conn = null;
+  exit;
+}
+
+if ($request == "updateClaimPrice") {
+  $claimPrice = $data->claimPrice;
+  $claimStatus = $data->approvement;
+  $user_id = $data->user_id;
+
+
+  
+  $stmt = $conn->prepare("UPDATE claims SET claim_status= ?, claim_price = ? WHERE claim_id  = '".($user_id+1)."' ");
+  $stmt->bindParam(1, $claimStatus);
+  $stmt->bindParam(2, $claimPrice);
+
+  if ($stmt->execute() === TRUE) {
+    echo "";
+  }
+
+  $conn = null;
+  exit;
+}
+
+if ($request == "dissapproveClaim") {
+
+  $claimStatus = $data->dissapprovement;
+  $user_id = $data->user_id;
+
+
+  
+  $stmt = $conn->prepare("UPDATE claims SET claim_status= ? WHERE claim_id  = '".($user_id+1)."' ");
+  $stmt->bindParam(1, $claimStatus);
+
+  if ($stmt->execute() === TRUE) {
+    echo "";
+  }
+
+  $conn = null;
+  exit;
+}
+
+if ($request == "claimPaidStatus") {
+
+  $claimStatus = $data->claimPaidStatus;
+  $user_id = $data->user_id;
+
+
+  
+  $stmt = $conn->prepare("UPDATE claims SET claim_status= ? WHERE claim_id  = '".($user_id+1)."' ");
+  $stmt->bindParam(1, $claimStatus);
+
+  if ($stmt->execute() === TRUE) {
+    echo "";
+  }
+
+  $conn = null;
+  exit;
+}
 
 ?>

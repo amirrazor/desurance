@@ -31,13 +31,22 @@
 
 
 
-<?php include "login.php" ?>
-<?php include "adminPanel.php" ?>
-<?php include "choose.php" ?>
-<?php include "insuranceTerms.php" ?>
-<?php include "calcPhone.php" ?>
-<?php include "personalInfo.php" ?>
-<?php include "reviewInfo.php" ?>
-<?php include "payment.php" ?>
-<?php include "userPanel.php" ?>
+<?php 
+
+    include "login.php" ;
+    include "userPanel.php";
+    include "adminPanel.php"; 
+    include "choose.php";   
+    include "insuranceTerms.php";
+    include "calcPhone.php";
+    include "personalInfo.php"; 
+    include "reviewInfo.php" ;
+    include "payment.php"; 
+    include "reviewClaim.php";
+?>
+
+
+
+
+
 <!--  footer -->
