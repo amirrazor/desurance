@@ -120,6 +120,7 @@
 </footer>
 <!-- Footer -->
 <!-- Javascript files-->
+
 <script src="frontend/web3-login.js?v=009"></script>
 <script src="frontend/web3-modal.js?v=001"></script>
 <script src="frontend/pay-payback.js" type="module"></script>

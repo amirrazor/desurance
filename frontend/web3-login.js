@@ -878,36 +878,15 @@ function getClaimAdmin() {
         document.getElementById("updateClaimPrice").value;
 
       document.getElementById("claimReviewSingle").innerHTML = tableTagSingle;
-
-      let response = null;
-      new Promise(async (resolve, reject) => {
-        try {
-          response = await axios.get(
-            "https://thingproxy.freeboard.io/fetch/https://pro-api.coinmarketcap.com/v2/tools/price-conversion?amount=1&id=1027&convert_id=2790",
-            {
-              headers: {
-                "X-CMC_PRO_API_KEY": "0a46df46-e1a8-4f15-9aa4-4b20acd16713",
-              },
-            }
-          );
-        } catch (ex) {
-          response = null;
-          // error
-          console.log(ex);
-          reject(ex);
-        }
-        if (response) {
-          // success
-          const jsonClaim = response.data.data.quote[2790].price;
+      fetch("http://localhost:3001/")
+        .then((response) => response.json())
+        .then((data) => {
+          const jsonClaim = data.data.quote[2790].price;
+          console.log(jsonClaim);
           const convertClaim = claimDatePriceArray[id_number] / jsonClaim;
           const claimInEther = convertClaim.toFixed(8);
           document.getElementById("claimInEther").innerHTML = claimInEther;
-          console.log(jsonClaim);
-          console.log(convertClaim);
-          console.log(document.getElementById("updateClaimPrice").value);
-          resolve(jsonClaim);
-        }
-      });
+        });
     });
     button = document.getElementById("reviewButton" + counter++);
 
